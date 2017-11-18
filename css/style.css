@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+/* 見出しのデザインの変更 */
+h1 {
+    border-bottom: solid 3px #bbb;
+    padding-bottom: 3px;
+}
+h2 {
+    border:2px solid #690;
+    padding: 10px;
+    box-shadow: 5px 5px #360;
+}
