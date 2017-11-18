@@ -10,3 +10,50 @@ h2 {
     padding: 10px;
     box-shadow: 5px 5px #360;
 }
+
+/* リンクのデザインの変更 */
+.contents a {
+    color: #03c;
+    background: #efd;
+}
+.contents a:visited{
+    color: #438;
+    background: #eee;
+}
+.contents a:hover {
+    background: #fcc;
+}
+
+/* リストのデザインの変更 */
+.contents ul li {
+    font-size:150%;
+    color: #690;
+    list-style: square outside;
+    list-style-image: none;
+}
+.contents ol li{
+    font-size:150%;
+    color: #690;
+    list-style: decimal inside;
+}
+.contents li span {
+    font-size:70%;
+    color: #000;
+}
+
+/* テーブルのデザインの変更 */
+table {
+    width: 100%;
+}
+table tr th, table tr td {
+    text-align: center;
+    padding: 0 10px;
+    border: 1px solid #DDD;
+}
+table tr td{
+    /* なし */
+}
+table tr th {
+    font-weight: bold;
+    background-color: #EEEEEE;
+}
