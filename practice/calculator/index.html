@@ -22,16 +22,43 @@
 				<p>
 					簡単な電卓を作成していきます。
 				</p>
+
+				<table>
+					<tr>
+						<td id="output" colspan="3">　</td>
+					</tr>
+					<tr>
+						<td><button id="input7" onclick="btnInput7();">7</button></td>
+						<td><button id="input8" onclick="btnInput8();">8</button></td>
+						<td><button id="input9" onclick="btnInput9();">9</button></td>
+					</tr>
+					<tr>
+						<td><button id="input4" onclick="btnInput4();">4</button></td>
+						<td><button id="input5" onclick="btnInput5();">5</button></td>
+						<td><button id="input6" onclick="btnInput6();">6</button></td>
+					</tr>
+					<tr>
+						<td><button id="input1" onclick="btnInput1();">1</button></td>
+						<td><button id="input2" onclick="btnInput2();">2</button></td>
+						<td><button id="input3" onclick="btnInput3();">3</button></td>
+					</tr>
+					<tr>
+						<td><button id="input0" onclick="btnInput0();">0</button></td>
+						<td><button id="input00" onclick="btnInput00();">00</button></td>
+						<td><button id="inputClear" onclick="btnInputClear();">Clear</button></td>
+					</tr>
+				</table>
+
 				<h2>更新履歴</h2>
 				<table>
 					<tr><th>日付</th><th>更新内容</th></tr>
+					<tr><td>2017-11-20</td><td>ボタンによる整数入力の実装</td></tr>
 					<tr><td>2017-11-19</td><td>ページ作成</td></tr>
 				</table>
 			</div>
 		</div>
-		<script>
-			/* JavaScript */
 
-		</script>
+		<!-- JavaScriptの適用 -->
+		<script type="text/javascript" src="calculator.js"></script>
 	</body>
 </html>
