@@ -70,3 +70,39 @@ function btnInput8() {
 function btnInput9() {
 	input(9);
 }
+
+/* キーボード */
+document.onkeydown = function(e) {
+    switch (e.keyCode) {
+        case 96:
+            btnInput0();
+            break;
+        case 97:
+            btnInput1();
+            break;
+        case 98:
+            btnInput2();
+            break;
+        case 99:
+            btnInput3();
+            break;
+        case 100:
+            btnInput4();
+            break;
+        case 101:
+            btnInput5();
+            break;
+        case 102:
+            btnInput6();
+            break;
+        case 103:
+            btnInput7();
+            break;
+        case 104:
+            btnInput8();
+            break;
+        case 105:
+            btnInput9();
+            break;
+    }
+}
