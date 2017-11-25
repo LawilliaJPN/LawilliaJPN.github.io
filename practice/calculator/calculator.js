@@ -1,6 +1,13 @@
 var value = -1;
 
 function input(num) {
+	// 例外処理
+	if (value >= 100000000000000) {
+		var outputE = document.getElementById("outputE");
+		outputE.innerHTML = "エラー：入力可能な数は、15桁までです。";
+		return;
+	}
+
 	if (value < 0) value = num;
 	else value = value * 10 + num;
 
@@ -8,11 +15,15 @@ function input(num) {
 	output.innerHTML = value;
 }
 
+/* ボタン */
 function btnInputClear() {
 	value = -1;
 
 	var output = document.getElementById("output");
 	output.innerHTML = "　";
+
+	var outputE = document.getElementById("outputE");
+	outputE.innerHTML = "　";
 }
 
 function btnInput0() {
