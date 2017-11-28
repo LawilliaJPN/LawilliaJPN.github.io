@@ -14,3 +14,8 @@
 button {
     width: 100%
 }
+
+/* 初期状態の数値1の背景色 */
+#outputValue1 {
+    background-color: #fcc;
+}
