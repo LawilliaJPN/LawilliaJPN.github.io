@@ -1,0 +1,16 @@
+﻿@charset "UTF-8";
+
+/* 数値 右寄せ */
+.value {
+    text-align: right;
+}
+
+/* 出力テーブル幅 固定 */
+.calculator {
+    table-layout: fixed;
+}
+
+/* ボタンのレイアウト */
+button {
+    width: 100%
+}

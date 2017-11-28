@@ -1,29 +1,38 @@
-var value = -1;
+var value1 = -1;
 
 function input(num) {
+	var value = value1;
+
 	// 例外処理
 	if (value >= 100000000000000) {
-		var outputE = document.getElementById("outputE");
-		outputE.innerHTML = "エラー：入力可能な数は、15桁までです。";
+		var outputMsg = document.getElementById("outputMsg");
+		outputMsg.innerHTML = "エラー：入力可能な数は、15桁までです。";
 		return;
 	}
 
 	if (value < 0) value = num;
 	else value = value * 10 + num;
 
-	var output = document.getElementById("output");
-	output.innerHTML = value;
+	var output = document.getElementById("outputValue1");
+	value1 = value;
+	// 参考：「数値をカンマ区切りにする - Qiita」 https://qiita.com/zawascript/items/922b5db574ef2b126069
+	output.innerHTML = String(value).replace( /(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+}
+
+function calculation(num) {
+	var outputMsg = document.getElementById("outputMsg");
+	outputMsg.innerHTML = "エラー：四則演算は未実装です。";
 }
 
 /* ボタン */
 function btnInputClear() {
-	value = -1;
+	value1 = -1;
 
-	var output = document.getElementById("output");
-	output.innerHTML = "　";
+	var outputValue1 = document.getElementById("outputValue1");
+	outputValue1.innerHTML = "　";
 
-	var outputE = document.getElementById("outputE");
-	outputE.innerHTML = "　";
+	var outputMsg = document.getElementById("outputMsg");
+	outputMsg.innerHTML = "　";
 }
 
 function btnInput0() {
@@ -69,6 +78,22 @@ function btnInput8() {
 
 function btnInput9() {
 	input(9);
+}
+
+function btnInputPlus() {
+	calculation(0);
+}
+
+function btnInputMinus() {
+	calculation(1);
+}
+
+function btnInputMultiply() {
+	calculation(2);
+}
+
+function btnInputDivide() {
+	calculation(3);
 }
 
 /* キーボード */

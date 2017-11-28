@@ -9,6 +9,7 @@
 
 		<!-- CSSの適用 -->
 		<link rel="stylesheet" href="../../css/style.css">
+		<link rel="stylesheet" href="calculator.css">
 
 		<!-- ページタイトル -->
 		<title>Calculator／電卓</title>
@@ -23,38 +24,58 @@
 					簡単な電卓を作成していきます。
 				</p>
 
-				<table>
+				<table class="calculator">
 					<tr>
-						<td id="outputE" colspan="3">　</td>
+						<th colspan="3">Calculator／電卓</td>
 					</tr>
 					<tr>
-						<td id="output" colspan="3">　</td>
+						<td id="outputMsg" colspan="3">製作中です。</td>
+					</tr>
+					<tr>
+						<th>数値 1</th>
+						<th>数値 2</th>
+						<th>結果</th>
+					</tr>
+					<tr>
+						<td class="value" id="outputValue1">　</td>
+						<td class="value" id="outputValue2">　</td>
+						<td class="value" id="outputResult">　</td>
+					</tr>
+				</table>
+				<table class="calculator">
+					<tr>
+						<th colspan="4">入力ボタン</td>
 					</tr>
 					<tr>
 						<td><button id="input7" onclick="btnInput7();">7</button></td>
 						<td><button id="input8" onclick="btnInput8();">8</button></td>
 						<td><button id="input9" onclick="btnInput9();">9</button></td>
+						<td><button id="inputDivide" onclick="btnInputDivide();">÷</button></td>
 					</tr>
 					<tr>
 						<td><button id="input4" onclick="btnInput4();">4</button></td>
 						<td><button id="input5" onclick="btnInput5();">5</button></td>
 						<td><button id="input6" onclick="btnInput6();">6</button></td>
+						<td><button id="inputMultiply" onclick="btnInputMultiply();">×</button></td>
 					</tr>
 					<tr>
 						<td><button id="input1" onclick="btnInput1();">1</button></td>
 						<td><button id="input2" onclick="btnInput2();">2</button></td>
 						<td><button id="input3" onclick="btnInput3();">3</button></td>
+						<td><button id="inputMinus" onclick="btnInputMinus();">－</button></td>
 					</tr>
 					<tr>
 						<td><button id="input0" onclick="btnInput0();">0</button></td>
 						<td><button id="input00" onclick="btnInput00();">00</button></td>
 						<td><button id="inputClear" onclick="btnInputClear();">Clear</button></td>
+						<td><button id="inputPlus" onclick="btnInputPlus();">＋</button></td>
 					</tr>
 				</table>
 
 				<h2>更新履歴</h2>
 				<table>
 					<tr><th>日付</th><th>更新内容</th></tr>
+					<tr><td>2017-11-28</td><td>レイアウト変更 電卓の見た目に</td></tr>
 					<tr><td rowspan="2">2017-11-25</td><td>テンキー入力に対応</td></tr>
 					<tr><td>入力可能な桁数の制限</td></tr>
 					<tr><td>2017-11-20</td><td>ボタンによる整数入力の実装</td></tr>
