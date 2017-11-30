@@ -1,5 +1,7 @@
 var value1 = 0;
 var value2 = 0;
+var value1Decimal = 0;
+var value2Decimal = 0;
 var buttonType = 0;
 var calcType = -1;
 var inputType = 0;
@@ -18,13 +20,27 @@ function input(num) {
 		return;
 	}
 
-	if (value == 0) value = num;
-	else value = value * 10 + num;
 
 	if ((inputType == 0) || (inputType == 1)) {
+		if (value1Decimal >= 1) {
+			value = value + num * Math.pow(0.1, value1Decimal);
+			value1Decimal++;
+		} else {
+			if (value == 0) value = num;
+			else value = value * 10 + num;
+		}
+
 		value1 = value;
 		outputValue(value, "outputValue1");
 	} else if (inputType == 2) {
+		if (value2Decimal >= 1) {
+			value = value + num * Math.pow(0.1, value2Decimal);
+			value2Decimal++;
+		} else {
+			if (value == 0) value = num;
+			else value = value * 10 + num;
+		}
+
 		value2 = value;
 		outputValue(value, "outputValue2");
 	}
@@ -106,6 +122,74 @@ function outputValue(value, strOutput) {
 	} else {
 		output.innerHTML = strValue;
 	}
+
+	if (value < 0) output.style.color = "red";
+	else output.style.color = "black";
+}
+
+function clear(type) {
+	if ((type == 0) || (type == 1)) {
+		value1 = 0;
+		value1Decimal = 0;
+
+		var outputValue1 = document.getElementById("outputValue1");
+		outputValue1.innerHTML = "　";
+	}
+
+	if ((type == 0) || (type == 2)) {
+		value2 = 0;
+		value2Decimal = 0;
+
+		var outputValue2 = document.getElementById("outputValue2");
+		outputValue2.innerHTML = "　";
+	}
+
+
+	if (type == 0) {
+		calcType = -1;
+		resetButtonColor();
+		updateInputType(0);
+
+		var outputMsg = document.getElementById("outputMsg");
+		outputMsg.innerHTML = "　";
+	}
+
+	var outputResult = document.getElementById("outputResult");
+	outputResult.innerHTML = "　";
+}
+
+function decimal() {
+	if ((inputType == 0) || (inputType == 1)) {
+		if (value1Decimal <= 0) value1Decimal = 1;
+	} else if (inputType == 2) {
+		if (value2Decimal <= 0) value2Decimal = 1;
+	}
+
+	var outputMsg = document.getElementById("outputMsg");
+	outputMsg.innerHTML = "エラー：小数の計算は正常に動作しない可能性があります。";
+}
+
+function tab() {
+	if ((inputType == 0) || (inputType == 1)) updateInputType(2);
+	else if (inputType == 2) updateInputType(1);
+}
+
+function pm(type) {
+	if ((inputType == 0) || (inputType == 1)) {
+		if (value1 < 0) {
+			if ((type == 0) || (type == 1)) value1 *= -1;
+		} else {
+			if ((type == 0) || (type == 2)) value1 *= -1;
+		}
+		outputValue(value1, "outputValue1");
+	} else if (inputType == 2) {
+		if (value2 < 0) {
+			if ((type == 0) || (type == 1)) value2 *= -1;
+		} else {
+			if ((type == 0) || (type == 2)) value2 *= -1;
+		}
+		outputValue(value2, "outputValue2");
+	}
 }
 
 /* 色の変更 */
@@ -139,26 +223,7 @@ function updateInputType(type) {
 }
 
 /* ボタン */
-function btnInputClear() {
-	value1 = value2 = 0;
-	calcType = -1;
-
-	updateInputType(0);
-	resetButtonColor();
-
-	var outputValue1 = document.getElementById("outputValue1");
-	outputValue1.innerHTML = "　";
-
-	var outputValue2 = document.getElementById("outputValue2");
-	outputValue2.innerHTML = "　";
-
-	var outputResult = document.getElementById("outputResult");
-	outputResult.innerHTML = "　";
-
-	var outputMsg = document.getElementById("outputMsg");
-	outputMsg.innerHTML = "　";
-}
-
+// 数値入力
 function btnInput0() {
 	input(0);
 }
@@ -204,6 +269,7 @@ function btnInput9() {
 	input(9);
 }
 
+// 演算
 function btnInputPlus() {
 	calcType = 1;
 	calculation();
@@ -224,9 +290,35 @@ function btnInputDivide() {
 	calculation();
 }
 
+// 機能
+function btnInputAC() {
+	clear(0);
+}
+
+function btnInputClear() {
+	clear(inputType);
+}
+
+function btnInputTab() {
+	tab();
+}
+
+function btnInputDecimal() {
+	decimal();
+}
+
+function btnInputPM() {
+	pm(0);
+}
+
 /* キーボード */
 document.onkeydown = function(e) {
     switch (e.keyCode) {
+	case 9:
+            // Tab
+            btnInputTab();
+            break;
+
 	// 数字
         case 48:
             btnInput0();
@@ -259,9 +351,29 @@ document.onkeydown = function(e) {
             btnInput9();
             break;
 
-	// C
+	case 65:
+            // A
+            btnInputAC();
+            break;
 	case 67:
+            // C
             btnInputClear();
+            break;
+	case 68:
+            // D
+            btnInputDecimal();
+            break;
+	case 77:
+            // M
+            pm(2);
+            break;
+	case 80:
+            // P
+            pm(1);
+            break;
+	case 84:
+            // T
+            btnInputTab();
             break;
 
 	// テンキーの数字
@@ -305,6 +417,9 @@ document.onkeydown = function(e) {
             break;
         case 109:
             btnInputMinus();
+            break;
+        case 110:
+            btnInputDecimal();
             break;
         case 111:
             btnInputDivide();
