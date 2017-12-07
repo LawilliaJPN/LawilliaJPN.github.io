@@ -94,7 +94,7 @@ function calc() {
 
 		if (result >= 100000000000000) {
 			var outputMsg = document.getElementById("outputMsg");
-			outputMsg.innerHTML = "エラー：16桁以上になるかけ算の結果は、正常に表示されない場合があります。";
+			outputMsg.innerHTML = "注意：桁数の大きなかけ算は不正確です。";
 		}
 
 		break;
@@ -103,7 +103,7 @@ function calc() {
 
 		if (value2 >= 100000) {
 			var outputMsg = document.getElementById("outputMsg");
-			outputMsg.innerHTML = "エラー：分母の大きな割り算の結果は、正常に表示されない場合があります。";
+			outputMsg.innerHTML = "注意：分母の大きな割り算は不正確です。";
 		}
 
 		break;
@@ -166,7 +166,7 @@ function decimal() {
 	}
 
 	var outputMsg = document.getElementById("outputMsg");
-	outputMsg.innerHTML = "エラー：小数の計算は正常に動作しない可能性があります。";
+	outputMsg.innerHTML = "注意：小数の計算は不正確です。";
 }
 
 function tab() {
@@ -190,6 +190,7 @@ function pm(type) {
 		}
 		outputValue(value2, "outputValue2");
 	}
+	calc();
 }
 
 /* 色の変更 */
