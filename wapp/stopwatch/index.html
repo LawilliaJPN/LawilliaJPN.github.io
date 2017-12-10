@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<!-- 文字コード -->
+		<meta charset="utf-8">
+
+		<!-- デバイスに幅を合わせる -->
+		<meta name="viewport" content="width=device-width">
+
+		<!-- CSSの適用 -->
+		<link rel="stylesheet" href="../../css/style.css">
+
+		<!-- ページタイトル -->
+		<title>Stopwatch／ストップウォッチ</title>
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="contents">
+				<h1><a href="https://lawilliajpn.github.io">Practice to Create A Website by Lawillia</a></h1>
+				<h2>Web制作の練習 #02 Stopwatch／ストップウォッチ</h2>
+				<p>
+					簡単なストップウォッチを作成していきます。
+				</p>
+				<p id="output">
+					0時間0分0秒00
+				</p>
+				<h2>更新履歴</h2>
+				<table>
+					<tr><th>日付</th><th>更新内容</th></tr>
+					<tr><td>2017-12-11</td><td>ページ作成</td></tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- JavaScriptの適用 -->
+		<script>
+			var count = 0;
+			
+			var timer = function() {
+				count++;
+				print();
+			}
+
+			function print() {
+				var ms = ("0" + count % 100).slice(-2);
+				var s = ("0" + Math.floor(count / 100 % 60)).slice(-2);
+				var m = ("0" + Math.floor(count / 6000 % 60)).slice(-2);
+				var h = ("0" + Math.floor(count / 360000)).slice(-2);
+
+				var output = document.getElementById("output");
+				output.innerHTML =  h + "時間" + m + "分" + s + "秒" + ms;
+			}
+
+			setInterval(timer, 10);
+		</script>
+	</body>
+</html>
