@@ -9,6 +9,7 @@
 
 		<!-- CSSの適用 -->
 		<link rel="stylesheet" href="../../css/style.css">
+		<link rel="stylesheet" href="stopwatch.css">
 
 		<!-- ページタイトル -->
 		<title>Stopwatch／ストップウォッチ</title>
@@ -22,37 +23,27 @@
 				<p>
 					簡単なストップウォッチを作成していきます。
 				</p>
-				<p id="output">
-					0時間0分0秒00
-				</p>
+
+				<table class="stopwatch">
+					<tr>
+						<td id="output" colspan="2">00時間00分00秒00</td>
+					</tr>
+					<tr>
+						<td><button id="on_off" onclick="btnOnOff();">START</button></td>
+						<td><button id="clear" onclick="btnClear();">CLEAR</button></td>
+					</tr>
+				</table>
 				<h2>更新履歴</h2>
 				<table>
 					<tr><th>日付</th><th>更新内容</th></tr>
+					<tr><td rowspan="2">2017-12-12</td><td>CLEARボタン実装</td></tr>
+					<tr><td>START・STOPボタン実装</td></tr>
 					<tr><td>2017-12-11</td><td>ページ作成</td></tr>
 				</table>
 			</div>
 		</div>
 
 		<!-- JavaScriptの適用 -->
-		<script>
-			var count = 0;
-			
-			var timer = function() {
-				count++;
-				print();
-			}
-
-			function print() {
-				var ms = ("0" + count % 100).slice(-2);
-				var s = ("0" + Math.floor(count / 100 % 60)).slice(-2);
-				var m = ("0" + Math.floor(count / 6000 % 60)).slice(-2);
-				var h = ("0" + Math.floor(count / 360000)).slice(-2);
-
-				var output = document.getElementById("output");
-				output.innerHTML =  h + "時間" + m + "分" + s + "秒" + ms;
-			}
-
-			setInterval(timer, 10);
-		</script>
+		<script type="text/javascript" src="stopwatch.js"></script>
 	</body>
 </html>
