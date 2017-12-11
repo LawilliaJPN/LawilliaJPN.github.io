@@ -1,3 +1,3 @@
 # LawilliaJPN.github.io  
-Practice to Create A Website  
-LINK：https://lawilliajpn.github.io
+Practice to Create Websites  
+https://lawilliajpn.github.io  
