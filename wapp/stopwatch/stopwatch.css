@@ -7,5 +7,11 @@
 
 /* ボタンのレイアウト */
 button {
-    width: 100%
+    width: 100%;
+}
+
+/* ボタン初期選択 */
+#displaySymbol {
+    color: white;
+    background-color: teal;
 }

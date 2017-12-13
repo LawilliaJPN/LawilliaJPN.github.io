@@ -1,8 +1,11 @@
 var count = 0;
 var isRunning = false;
+
 var splits = [];
 var laps = [];
 var NUM_OF_LAPS = 10;
+
+var display = 0;
 
 /* タイマー */
 var timer = function() {
@@ -29,9 +32,7 @@ function clear() {
 	splits = [];
 	laps = [];
 
-	outputTime();
-	outputSplit();
-	outputLap();
+	updateOutput();
 }
 
 function addLap() {
@@ -57,48 +58,68 @@ function addLap() {
 	outputLap();
 }
 
+function switchDisplay(num) {
+	display = num;
+	updateOutput();
+
+	resetButtonColor();
+	switch (display) {
+	case 0:
+		setButtonColor(displaySymbol);
+		break;
+	case 1:
+		setButtonColor(displayEnglish);
+		break;
+	case 2:
+		setButtonColor(displayJapanese);
+		break;
+	}
+}
+
 /* 出力 */
+function updateOutput() {
+	outputTime();
+	outputSplit();
+	outputLap();
+}
+
 function outputTime() {
 	printTime(count, "output");
 }
 
 function outputSplit() {
-	if(splits.length == 0) {
-		for (var i = 0; i < NUM_OF_LAPS; i++) {
-			printTime(0, "split" + i);
-		}
-	} else {
-		for (var i = 0; i < splits.length; i++) {
-			printTime(splits[i], "split" + i);
-		}
+	for (var i = 0; i < splits.length; i++) {
+		printTime(splits[i], "split" + i);
+	}
+
+	for (var i = splits.length; i < NUM_OF_LAPS; i++) {
+		printTime(0, "split" + i);
 	}
 }
 
 function outputLap() {
-	if(laps.length == 0) {
-		for (var i = 0; i < NUM_OF_LAPS; i++) {
-			printTime(0, "lap" + i);
-		}
-	} else {
-		for (var i = 0; i < laps.length; i++) {
-			printTime(laps[i], "lap" + i);
-		}
+	for (var i = 0; i < laps.length; i++) {
+		printTime(laps[i], "lap" + i);
+	}
+
+	for (var i = splits.length; i < NUM_OF_LAPS; i++) {
+		printTime(0, "lap" + i);
 	}
 }
 
-/* 処理 */
+/* 基本処理 */
 function stop() {
 	isRunning = false;
 
 	var button = document.getElementById("on_off");
-	button.innerHTML = "START";
+	button.innerHTML = "START:S";
 }
 
 function start() {
 	isRunning = true;
 
 	var button = document.getElementById("on_off");
-	button.innerHTML = "STOP";
+	button.innerHTML = "STOP:S";
 }
 
 function printTime(c, Id) {
@@ -108,7 +129,32 @@ function printTime(c, Id) {
 	var h = ("0" + Math.floor(c / 360000)).slice(-2);
 
 	var output = document.getElementById(Id);
-	output.innerHTML = h + "時間" + m + "分" + s + "秒" + ms;
+	switch (display) {
+	case 0:
+		output.innerHTML = h + ":" + m + ":" + s + "." + ms;
+		break;
+	case 1:
+		output.innerHTML = h + "h" + m + "m" + s + "s" + ms;
+		break;
+	case 2:
+		output.innerHTML = h + "時間" + m + "分" + s + "秒" + ms;
+		break;
+	}
+}
+
+function setButtonColor(button) {
+	button.style.color = "white";
+	button.style.backgroundColor = "teal";
+}
+
+function resetButtonColor() {
+	displaySymbol.style.color = "buttontext";
+	displayEnglish.style.color = "buttontext";
+	displayJapanese.style.color = "buttontext";
+
+	displaySymbol.style.backgroundColor = "buttonface";
+	displayEnglish.style.backgroundColor = "buttonface";
+	displayJapanese.style.backgroundColor = "buttonface";
 }
 
 /* ボタン */
@@ -124,6 +170,18 @@ function btnLap() {
 	addLap();
 }
 
+function btnDisplaySymbol() {
+	switchDisplay(0);
+}
+
+function btnDisplayEnglish() {
+	switchDisplay(1);
+}
+
+function btnDisplayJapanese() {
+	switchDisplay(2);
+}
+
 /* キーボード */
 document.onkeydown = function(e) {
 	switch (e.keyCode) {
@@ -131,13 +189,41 @@ document.onkeydown = function(e) {
 		// スペースキー
 		btnOnOff();
 		break;
+	case 49:
+		// 1
+		btnDisplaySymbol();
+		break;
+	case 50:
+		// 2
+		btnDisplayEnglish();
+		break;
+	case 51:
+		// 3
+		btnDisplayJapanese();
+		break;
 	case 67:
 		// Cキー
 		btnClear();
 		break;
+	case 76:
+		// Lキー
+		btnLap();
+		break;
 	case 83:
 		// Sキー
 		btnOnOff();
+		break;
+	case 97:
+		// 1(テンキー)
+		btnDisplaySymbol();
+		break;
+	case 98:
+		// 2(テンキー)
+		btnDisplayEnglish();
+		break;
+	case 99:
+		// 3(テンキー)
+		btnDisplayJapanese();
 		break;
 	}
 }
