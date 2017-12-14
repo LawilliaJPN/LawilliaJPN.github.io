@@ -15,3 +15,8 @@ button {
     color: white;
     background-color: teal;
 }
+
+/* グラフの枠線 */
+#graph {
+	border:1px solid gray;
+}

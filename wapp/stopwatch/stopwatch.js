@@ -33,6 +33,7 @@ function clear() {
 	laps = [];
 
 	updateOutput();
+	clearGraph();
 }
 
 function addLap() {
@@ -56,6 +57,7 @@ function addLap() {
 
 	outputSplit();
 	outputLap();
+	outputGraph();
 }
 
 function switchDisplay(num) {
@@ -81,6 +83,7 @@ function updateOutput() {
 	outputTime();
 	outputSplit();
 	outputLap();
+	outputGraph();
 }
 
 function outputTime() {
@@ -104,6 +107,15 @@ function outputLap() {
 
 	for (var i = splits.length; i < NUM_OF_LAPS; i++) {
 		printTime(0, "lap" + i);
+	}
+}
+
+function outputGraph() {
+	if (splits.length >= 2) {
+		drawGraph();
+	} else {
+		var graph = document.getElementById("graph");
+		graph.innerHTML = "";
 	}
 }
 
@@ -140,6 +152,33 @@ function printTime(c, Id) {
 		output.innerHTML = h + "時間" + m + "分" + s + "秒" + ms;
 		break;
 	}
+}
+
+function drawGraph() {
+	var width = document.body.clientWidth;
+	var height = window.innerHeight / 4;
+
+	var graph = document.getElementById("graph");
+	graph.innerHTML = '<canvas id="canvas" width="' + width + '" height="' + height + '">';
+
+	var canvas = document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+	context.clearRect(0, 0, width, height);
+
+	context.beginPath();
+	context.moveTo(0, height);
+
+	for (var i = 0; i < splits.length-1; i++) {
+		var x = width*(i+1)/(splits.length);
+		var y = height - height*splits[splits.length-(i+1)]/splits[0];
+		context.lineTo(x, y);
+		context.fillStyle="blue";
+		context.fillRect(x-5, y-5, 10, 10)
+	}
+
+	context.lineTo(width, 0);
+	context.strokeStyle = "teal";
+	context.stroke();
 }
 
 function setButtonColor(button) {
