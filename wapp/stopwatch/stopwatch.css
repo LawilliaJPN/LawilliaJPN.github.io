@@ -17,6 +17,6 @@ button {
 }
 
 /* グラフの枠線 */
-#graph {
+#canvas {
 	border:1px solid gray;
 }

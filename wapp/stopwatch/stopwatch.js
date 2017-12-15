@@ -3,7 +3,9 @@ var isRunning = false;
 
 var splits = [];
 var laps = [];
-var NUM_OF_LAPS = 10;
+
+var DISPLAYED_LAPS = 10;
+var MEMORIED_LAPS = 100;
 
 var display = 0;
 
@@ -33,13 +35,15 @@ function clear() {
 	laps = [];
 
 	updateOutput();
-	clearGraph();
 }
 
 function addLap() {
+	if (count == 0) return;
+	if (count == splits[0]) return;
+
 	splits.unshift(count);
 
-	if (splits.length > NUM_OF_LAPS) {
+	if (splits.length > MEMORIED_LAPS) {
 		splits.pop();
 	}
 
@@ -51,7 +55,7 @@ function addLap() {
 	}
 	laps.unshift(lap)
 
-	if (laps.length > NUM_OF_LAPS) {
+	if (laps.length > MEMORIED_LAPS) {
 		laps.pop();
 	}
 
@@ -91,22 +95,34 @@ function outputTime() {
 }
 
 function outputSplit() {
-	for (var i = 0; i < splits.length; i++) {
-		printTime(splits[i], "split" + i);
-	}
+	if (splits.length > DISPLAYED_LAPS) {
+		for (var i = 0; i < DISPLAYED_LAPS; i++) {
+			printTime(splits[i], "split" + i);
+		}
+	} else {
+		for (var i = 0; i < splits.length; i++) {
+			printTime(splits[i], "split" + i);
+		}
 
-	for (var i = splits.length; i < NUM_OF_LAPS; i++) {
-		printTime(0, "split" + i);
+		for (var i = splits.length; i < DISPLAYED_LAPS; i++) {
+			printTime(0, "split" + i);
+		}
 	}
 }
 
 function outputLap() {
-	for (var i = 0; i < laps.length; i++) {
-		printTime(laps[i], "lap" + i);
-	}
+	if (laps.length > DISPLAYED_LAPS) {
+		for (var i = 0; i < DISPLAYED_LAPS; i++) {
+			printTime(laps[i], "lap" + i);
+		}
+	} else {
+		for (var i = 0; i < laps.length; i++) {
+			printTime(laps[i], "lap" + i);
+		}
 
-	for (var i = splits.length; i < NUM_OF_LAPS; i++) {
-		printTime(0, "lap" + i);
+		for (var i = splits.length; i < DISPLAYED_LAPS; i++) {
+			printTime(0, "lap" + i);
+		}
 	}
 }
 
@@ -165,20 +181,43 @@ function drawGraph() {
 	var context = canvas.getContext("2d");
 	context.clearRect(0, 0, width, height);
 
-	context.beginPath();
-	context.moveTo(0, height);
+	drawLapGraph(context, width, height);
+	drawSplitGraph(context, width, height);
+}
+
+function drawLapGraph(c, w, h) {
+	var barWidth = w / laps.length;
+
+	var maxLap = laps[0];
+	for (var i = 0; i < laps.length; i++) {
+		if (maxLap < laps[i]) maxLap = laps[i];
+	}
+	maxLap *= 1.2;
+
+	c.fillStyle="#fcc";
+
+	for (var i = 0; i < laps.length; i++) {
+		var x = w*(i+1)/(laps.length);
+		var y = h*laps[laps.length-(i+1)]/maxLap;
+		c.fillRect(x-barWidth, h, barWidth, -y)
+	}
+}
+
+function drawSplitGraph(c, w, h) {
+	c.beginPath();
+	c.moveTo(0, h);
 
 	for (var i = 0; i < splits.length-1; i++) {
-		var x = width*(i+1)/(splits.length);
-		var y = height - height*splits[splits.length-(i+1)]/splits[0];
-		context.lineTo(x, y);
-		context.fillStyle="blue";
-		context.fillRect(x-5, y-5, 10, 10)
+		var x = w*(i+1)/(splits.length);
+		var y = h - h*splits[splits.length-(i+1)]/splits[0];
+		c.lineTo(x, y);
+		c.fillStyle="blue";
+		c.fillRect(x-5, y-5, 10, 10)
 	}
 
-	context.lineTo(width, 0);
-	context.strokeStyle = "teal";
-	context.stroke();
+	c.lineTo(w, 0);
+	c.strokeStyle = "teal";
+	c.stroke();
 }
 
 function setButtonColor(button) {
@@ -265,4 +304,9 @@ document.onkeydown = function(e) {
 		btnDisplayJapanese();
 		break;
 	}
+}
+
+/* ウィンドウリサイズ */
+window.onresize = function() {
+	outputGraph();
 }
