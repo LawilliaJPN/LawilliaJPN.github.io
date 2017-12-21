@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+/* 出力テーブル幅 固定 */
+.counter {
+    table-layout: fixed;
+}
+
+/* ボタンのレイアウト */
+button {
+    width: 100%;
+}
