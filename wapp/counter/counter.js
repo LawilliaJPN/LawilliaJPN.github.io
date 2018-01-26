@@ -35,6 +35,16 @@ function deleteCounter() {
     outputCounter();
 }
 
+function addCount(num) {
+    counters[num]++;
+    outputCounter();
+}
+
+function subCount(num) {
+    counters[num]--;
+    outputCounter();
+}
+
 /* 処理 */
 function outputCounter() {
     var outputStr = '';
@@ -61,4 +71,12 @@ function btnClearCounter() {
 
 function btnDeleteCounter() {
     deleteCounter();
+}
+
+function btnPlus(num) {
+    addCount(num);
+}
+
+function btnMinus(num) {
+    subCount(num);
 }
