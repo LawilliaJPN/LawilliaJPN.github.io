@@ -6,18 +6,25 @@ function resisterWord() {
     var wordQ = document.getElementById("wordQ").value;
     var wordA = document.getElementById("wordA").value;
 
+    // 例外処理
     if (wordA.includes("／")) {
-        outputMsg("resisterMsg", "「／」を含む文字列を登録することはできません。");
+        outputMsg("resisterMsg", "エラー：「／」を含む文字列を登録することはできません。");
         return;
-    } else {
-        outputMsg("resisterMsg", "問題「" + wordQ + "」、解答「" + wordA + "」を登録しました。");
+    } else if (wordQ == "") {
+        outputMsg("resisterMsg", "エラー：「問題」が空欄です。");
+        return;
+    } else if (wordA == "") {
+        outputMsg("resisterMsg", "エラー：「解答」が空欄です。");
+        return;
     }
-    wordA = wordA + "／" + 0 + "／" + 0;
 
+    outputMsg("resisterMsg", "問題「" + wordQ + "」、解答「" + wordA + "」を登録しました。");
+    wordA = wordA + "／" + 0 + "／" + 0;
     localStorage.setItem(wordQ, wordA);
 }
 
 function displayTest() {
+    // 例外処理
     if (localStorage.length == 0) {
         outputMsg("testQ", "問題：");
         outputMsg("testMsg", "エラー：単語が登録されていません。");
@@ -34,12 +41,16 @@ function displayTest() {
 }
 
 function decideTest() {
+    var input = document.getElementById("testA").value;
+
+    // 例外処理
     if (answered) {
-        outputMsg("testMsg", "解答済みです。「次の問題」を押してください。");
+        outputMsg("testMsg", "エラー：解答済みです。「次の問題」を押してください。");
+        return;
+    } else if (input == "") {
+        outputMsg("testMsg", "エラー：「解答」が空欄です。");
         return;
     }
-
-    var input = document.getElementById("testA").value;
 
     if (input == testA[0]) {
         outputMsg("testMsg", "正解です。");
