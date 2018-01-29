@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<!-- 文字コード -->
+		<meta charset="utf-8">
+
+		<!-- デバイスに幅を合わせる -->
+		<meta name="viewport" content="width=device-width">
+
+		<!-- CSSの適用 -->
+		<link rel="stylesheet" href="../../css/style.css">
+		<!-- <link rel="stylesheet" href="vocabulary.css"> -->
+
+		<!-- ページタイトル -->
+		<title>Vocabulary Test／単語テスト</title>
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="contents">
+				<h1><a href="https://lawilliajpn.github.io">Practice to Create Websites by Lawillia</a></h1>
+				<h2>Web制作の練習 #04 Vocabulary Test</h2>
+				<p>
+					簡単な単語テストを作成していきます。
+				</p>
+
+				<h2>単語テスト</h2>
+				<p id="testQ"></p>
+				<p>解答：<input id="testA"></p>
+				<p><button onclick="btnTest();">解答</button></p>
+				<p id="testMsg"></p>
+				<p><button onclick="btnNext();">次の問題</button></p>
+
+				<h2>単語登録</h2>
+				<p>問題：<input id="wordQ"></p>
+				<p>解答：<input id="wordA"></p>
+				<p><button onclick="btnRegister();">登録</button></p>
+				<p id="resisterMsg"></p>
+
+				<h2>更新履歴</h2>
+				<table>
+					<tr><th>日付</th><th>更新内容</th></tr>
+					<tr><td rowspan="2">2018-01-29</td><td>テスト実装</td></tr>
+					<tr><td>単語登録実装</td></tr>
+					<tr><td>2018-01-28</td><td>ページ作成</td></tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- JavaScriptの適用 -->
+		<script type="text/javascript" src="vocabulary.js"></script>
+	</body>
+</html>
