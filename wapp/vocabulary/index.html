@@ -26,7 +26,7 @@
 
 				<h2>単語テスト</h2>
 				<p id="testQ"></p>
-				<p>解答：<input id="testA"></p>
+				<p id="testA">解答：<input id="testInput"></p>
 				<p><button onclick="btnTest();">解答</button></p>
 				<p id="testMsg"></p>
 				<p><button onclick="btnNext();">次の問題</button></p>
@@ -37,15 +37,16 @@
 				<p><button onclick="btnRegister();">登録</button></p>
 				<p id="resisterMsg"></p>
 
-				<h2>単語一覧 ※未実装</h2>
-				<p><button onclick="btnList();">表示</button></p>
+				<h2>単語一覧</h2>
+				<p><button id="btnList" onclick="btnList();">表示</button></p>
 				<table id="list"></table>
 
 				<h2>更新履歴</h2>
 				<table>
 					<tr><th>日付</th><th>更新内容</th></tr>
-					<tr><td rowspan="2">2018-01-29</td><td>テスト実装</td></tr>
-					<tr><td>単語登録実装</td></tr>
+					<tr><td>2018-01-30</td><td>単語一覧 実装</td></tr>
+					<tr><td rowspan="2">2018-01-29</td><td>単語テスト 実装</td></tr>
+					<tr><td>単語登録 実装</td></tr>
 					<tr><td>2018-01-28</td><td>ページ作成</td></tr>
 				</table>
 			</div>
