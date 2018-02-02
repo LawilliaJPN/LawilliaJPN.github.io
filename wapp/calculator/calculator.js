@@ -20,25 +20,37 @@ function input(num) {
 		return;
 	}
 
-
 	if ((inputType == 0) || (inputType == 1)) {
-		if (value1Decimal >= 1) {
-			value = value + num * Math.pow(0.1, value1Decimal);
+		if (value1Decimal >= 2) {
+			value = "" + value + num;
 			value1Decimal++;
+			value = parseFloat(value);
+		} else if (value1Decimal == 1) {
+			value = "" + value + "." + num;
+			value1Decimal++;
+			value = parseFloat(value);
 		} else {
 			if (value == 0) value = num;
-			else value = value * 10 + num;
+			else value = "" + value + num;
+			value = parseInt(value, 10);
 		}
 
 		value1 = value;
 		outputValue(value, "outputValue1");
+
 	} else if (inputType == 2) {
-		if (value2Decimal >= 1) {
-			value = value + num * Math.pow(0.1, value2Decimal);
+		if (value2Decimal >= 2) {
+			value = "" + value + num;
 			value2Decimal++;
+			value = parseFloat(value);
+		} else if (value2Decimal == 1) {
+			value = "" + value + "." + num;
+			value2Decimal++;
+			value = parseFloat(value);
 		} else {
 			if (value == 0) value = num;
-			else value = value * 10 + num;
+			else value = "" + value + num;
+			value = parseInt(value, 10);
 		}
 
 		value2 = value;
@@ -164,9 +176,6 @@ function decimal() {
 	} else if (inputType == 2) {
 		if (value2Decimal <= 0) value2Decimal = 1;
 	}
-
-	var outputMsg = document.getElementById("outputMsg");
-	outputMsg.innerHTML = "注意：小数の計算は不正確です。";
 }
 
 function tab() {
