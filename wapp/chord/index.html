@@ -21,37 +21,106 @@
 				<h2>Web制作の練習 #05 Chord</h2>
 				<p>
 					簡単な和音再生を作成していきます。<br />
-					Web Audio APIに対応したブラウザでのみ再生可能です。
+					Web Audio APIに対応したブラウザでのみ再生可能です。<br />
+					また、環境により、単音しか再生されない場合があります。
                 </p>
 
                 <table>
                     <tr><th colspan="2">操作</th></tr>
-                    <tr><td><button id="btnPlay" onclick="btnPlay()">再生</button></td><td></td></tr>
-                    <tr><th>根音</th><th>未実装</th></tr>
-                    <tr><td><button id="btnRoot0" onclick="btnRoot(0);">C</button></td><td></td></tr>
-                    <tr><td><button id="btnRoot1" onclick="btnRoot(1);">C#/Db</button></td><td></td></tr>
-                    <tr><td><button id="btnRoot2" onclick="btnRoot(2);">D</button></td><td></td></tr>
-                    <tr><td><button id="btnRoot3" onclick="btnRoot(3);">D#/Eb</button></td><td></td></tr>
-                    <tr><td><button id="btnRoot4" onclick="btnRoot(4);">E</button></td><td></td></tr>
-                    <tr><td><button id="btnRoot5" onclick="btnRoot(5);">F</button></td><td></td></tr>
-                    <tr><td><button id="btnRoot6" onclick="btnRoot(6);">F#/Gb</button></td><td></td></tr>
-                    <tr><td><button id="btnRoot7" onclick="btnRoot(7);">G</button></td><td></td></tr>
-                    <tr><td><button id="btnRoot8" onclick="btnRoot(8);">G#/Ab</button></td><td></td></tr>
-                    <tr><td><button id="btnRoot9" onclick="btnRoot(9);">A</button></td><td></td></tr>
-                    <tr><td><button id="btnRoot10" onclick="btnRoot(10);">A#/Bb</button></td><td></td></tr>
-                    <tr><td><button id="btnRoot11" onclick="btnRoot(11);">B</button></td><td></td></tr>
+					<tr>
+						<td><button id="btnPlay" onclick="btnPlay()">再生</button></td>
+						<td></td>
+					</tr>
+				</table>
+
+				<table>
+					<tr><th colspan="4">三和音</th></tr>
+                    <tr><th>長三和音</th><th>短三和音</th><th>増三和音</th><th>短三和音</th></tr>
+                    <tr>
+						<td><button id="btnMaj0" onclick="btnMaj(0);">C</button></td>
+						<td><button id="btnMin0" onclick="btnMin(0);">Cm</button></td>
+						<td><button id="btnDim0" onclick="btnDim(0);">Cm(b5)</button></td>
+						<td><button id="btnAug0" onclick="btnAug(0);">Caug</button></td>
+					</tr>
+                    <tr>
+						<td><button id="btnMaj1" onclick="btnMaj(1);">C#/Db</button></td>
+						<td><button id="btnMin1" onclick="btnMin(1);">C#m/Dbm</button></td>
+						<td><button id="btnDim1" onclick="btnDim(1);">C#m(b5)/Dbm(b5)</button></td>
+						<td><button id="btnAug1" onclick="btnAug(1);">C#aug/Dbaug</button></td>
+					</tr>
+                    <tr>
+						<td><button id="btnMaj2" onclick="btnMaj(2);">D</button></td>
+						<td><button id="btnMin2" onclick="btnMin(2);">Dm</button></td>
+						<td><button id="btnDim2" onclick="btnDim(2);">Dm(b5)</button></td>
+						<td><button id="btnAug2" onclick="btnAug(2);">Daug</button></td>
+					</tr>
+                    <tr>
+						<td><button id="btnMaj3" onclick="btnMaj(3);">D#/Eb</button></td>
+						<td><button id="btnMin3" onclick="btnMin(3);">D#m/Ebm</button></td>
+						<td><button id="btnDim3" onclick="btnDim(3);">D#m(b5)/Ebm(b5)</button></td>
+						<td><button id="btnAug3" onclick="btnAug(3);">D#aug/Ebaug</button></td>
+					</tr>
+                    <tr>
+						<td><button id="btnMaj4" onclick="btnMaj(4);">E</button></td>
+						<td><button id="btnMin4" onclick="btnMin(4);">Em</button></td>
+						<td><button id="btnDim4" onclick="btnDim(4);">Em(b5)</button></td>
+						<td><button id="btnAug4" onclick="btnAug(4);">Eaug</button></td>
+					</tr>
+                    <tr>
+						<td><button id="btnMaj5" onclick="btnMaj(5);">F</button></td>
+						<td><button id="btnMin5" onclick="btnMin(5);">Fm</button></td>
+						<td><button id="btnDim5" onclick="btnDim(5);">Fm(b5)</button></td>
+						<td><button id="btnAug5" onclick="btnAug(5);">Faug</button></td>
+					</tr>
+                    <tr>
+						<td><button id="btnMaj6" onclick="btnMaj(6);">F#/Gb</button></td>
+						<td><button id="btnMin6" onclick="btnMin(6);">F#m/Gbm</button></td>
+						<td><button id="btnDim6" onclick="btnDim(6);">F#m(b5)/Gbm(b5)</button></td>
+						<td><button id="btnAug6" onclick="btnAug(6);">F#aug/Gbaug</button></td>
+					</tr>
+                    <tr>
+						<td><button id="btnMaj7" onclick="btnMaj(7);">G</button></td>
+						<td><button id="btnMin7" onclick="btnMin(7);">Gm</button></td>
+						<td><button id="btnDim7" onclick="btnDim(7);">Gm(b5)</button></td>
+						<td><button id="btnAug7" onclick="btnAug(7);">Gaug</button></td>
+					</tr>
+                    <tr>
+						<td><button id="btnMaj8" onclick="btnMaj(8);">G#/Ab</button></td>
+						<td><button id="btnMin8" onclick="btnMin(8);">G#m/Abm</button></td>
+						<td><button id="btnDim8" onclick="btnDim(8);">G#m(b5)/Abm(b5)</button></td>
+						<td><button id="btnAug8" onclick="btnAug(8);">G#aug/Abaug</button></td>
+					</tr>
+                    <tr>
+						<td><button id="btnMaj9" onclick="btnMaj(9);">A</button></td>
+						<td><button id="btnMin9" onclick="btnMin(9);">Am</button></td>
+						<td><button id="btnDim9" onclick="btnDim(9);">Am(b5)</button></td>
+						<td><button id="btnAug9" onclick="btnAug(9);">Aaug</button></td>
+					</tr>
+                    <tr>
+						<td><button id="btnMaj10" onclick="btnMaj(10);">A#/Bb</button></td>
+						<td><button id="btnMin10" onclick="btnMin(10);">A#m/Bbm</button></td>
+						<td><button id="btnDim10" onclick="btnDim(10);">A#m(b5)/Bbm(b5)</button></td>
+						<td><button id="btnAug10" onclick="btnAug(10);">A#aug/Bbaug</button></td>
+					</tr>
+                    <tr>
+						<td><button id="btnMaj11" onclick="btnMaj(11);">B</button></td>
+						<td><button id="btnMin11" onclick="btnMin(11);">Bm</button></td>
+						<td><button id="btnDim11" onclick="btnDim(11);">Bm(b5)</button></td>
+						<td><button id="btnAug11" onclick="btnAug(11);">Baug</button></td>
+					</tr>
                 </table>
                 
 				<h2>更新履歴</h2>
 				<table>
 					<tr><th>日付</th><th>更新内容</th></tr>
-					<tr><td>2018-02-04</td><td>長三和音 実装</td></tr>
+					<tr><td>2018-02-04</td><td>三和音 実装</td></tr>
 					<tr><td>2018-02-03</td><td>ページ作成</td></tr>
 				</table>
 			</div>
 		</div>
 
 		<!-- JavaScriptの適用 -->
+		<script type="text/javascript" src="../../js/wapplibs.js"></script>
 		<script type="text/javascript" src="ac.js"></script>
 		<script type="text/javascript" src="chord.js"></script>
 	</body>
