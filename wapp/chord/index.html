@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<!-- 文字コード -->
+		<meta charset="utf-8">
+
+		<!-- デバイスに幅を合わせる -->
+		<meta name="viewport" content="width=device-width">
+
+		<!-- CSSの適用 -->
+		<link rel="stylesheet" href="../../css/style.css">
+
+		<!-- ページタイトル -->
+		<title>Chord／和音再生</title>
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="contents">
+				<h1><a href="https://lawilliajpn.github.io">Practice to Create Websites by Lawillia</a></h1>
+				<h2>Web制作の練習 #05 Chord</h2>
+				<p>
+					簡単な和音再生を作成していきます。<br />
+					Web Audio APIに対応したブラウザでのみ再生可能です。
+                </p>
+
+                <table>
+                    <tr><th colspan="2">操作</th></tr>
+                    <tr><td><button id="btnPlay" onclick="btnPlay()">再生</button></td><td></td></tr>
+                    <tr><th>根音</th><th>未実装</th></tr>
+                    <tr><td><button id="btnRoot0" onclick="btnRoot(0);">C</button></td><td></td></tr>
+                    <tr><td><button id="btnRoot1" onclick="btnRoot(1);">C#/Db</button></td><td></td></tr>
+                    <tr><td><button id="btnRoot2" onclick="btnRoot(2);">D</button></td><td></td></tr>
+                    <tr><td><button id="btnRoot3" onclick="btnRoot(3);">D#/Eb</button></td><td></td></tr>
+                    <tr><td><button id="btnRoot4" onclick="btnRoot(4);">E</button></td><td></td></tr>
+                    <tr><td><button id="btnRoot5" onclick="btnRoot(5);">F</button></td><td></td></tr>
+                    <tr><td><button id="btnRoot6" onclick="btnRoot(6);">F#/Gb</button></td><td></td></tr>
+                    <tr><td><button id="btnRoot7" onclick="btnRoot(7);">G</button></td><td></td></tr>
+                    <tr><td><button id="btnRoot8" onclick="btnRoot(8);">G#/Ab</button></td><td></td></tr>
+                    <tr><td><button id="btnRoot9" onclick="btnRoot(9);">A</button></td><td></td></tr>
+                    <tr><td><button id="btnRoot10" onclick="btnRoot(10);">A#/Bb</button></td><td></td></tr>
+                    <tr><td><button id="btnRoot11" onclick="btnRoot(11);">B</button></td><td></td></tr>
+                </table>
+                
+				<h2>更新履歴</h2>
+				<table>
+					<tr><th>日付</th><th>更新内容</th></tr>
+					<tr><td>2018-02-04</td><td>長三和音 実装</td></tr>
+					<tr><td>2018-02-03</td><td>ページ作成</td></tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- JavaScriptの適用 -->
+		<script type="text/javascript" src="ac.js"></script>
+		<script type="text/javascript" src="chord.js"></script>
+	</body>
+</html>
