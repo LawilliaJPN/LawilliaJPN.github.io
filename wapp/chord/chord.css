@@ -1,0 +1,4 @@
+/* テーブル幅 固定 */
+.control {
+    table-layout: fixed;
+}

@@ -11,16 +11,16 @@ var hz = [
 // 各音の二元配列
 var sound = new Array(SOUND_X);
 for (var i =0; i <SOUND_Y; i++) sound[i] = new Array(SOUND_Y);
-
 // 初期化
 var audioCtx = new AudioContext();
 var audioGain = audioCtx.createGain();
-audioGain.gain.value = 1;
 initSounds();
 // 出力
 audioGain.connect(audioCtx.destination);
 
 function initSounds() {
+    audioGain.gain.value = document.getElementById("volume").value;
+
     for (var i =0; i <SOUND_X; i++) {
         for (var k =0; k <SOUND_Y; k++) {
             initSound(i, k);

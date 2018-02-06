@@ -9,6 +9,7 @@
 
 		<!-- CSSの適用 -->
 		<link rel="stylesheet" href="../../css/style.css">
+		<link rel="stylesheet" href="chord.css">
 
 		<!-- ページタイトル -->
 		<title>Chord／和音再生</title>
@@ -28,8 +29,12 @@
                 <table>
                     <tr><th colspan="2">操作</th></tr>
 					<tr>
-						<td><button id="btnPlay" onclick="btnPlay()">再生</button></td>
-						<td></td>
+						<td><button id="btnPlay" onclick="btnPlay();">再生</button></td>
+						<td><input id="volume" type="range" min="0" max="0.5" value="0.5" step="0.1"></td>
+					</tr>
+					<tr>
+						<td><button id="btnDiatonic" onclick="btnDiatonic();">ダイアトニック</button></td>
+						<td id="scale">Cスケール</td>
 					</tr>
 				</table>
 
@@ -113,6 +118,8 @@
 				<h2>更新履歴</h2>
 				<table>
 					<tr><th>日付</th><th>更新内容</th></tr>
+					<tr><td rowspan="2">2018-02-06</td><td>ダイアトニックコード表示 実装</td></tr>
+					<tr><td>音量調整 仮実装</td></tr>
 					<tr><td>2018-02-04</td><td>三和音 実装</td></tr>
 					<tr><td>2018-02-03</td><td>ページ作成</td></tr>
 				</table>
