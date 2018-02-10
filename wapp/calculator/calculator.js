@@ -64,23 +64,23 @@ function input(num) {
 
 function calculation() {
 	buttonType = 2;
-	resetButtonColor();
+	resetAllButtonsColor();
 
 	var outputMsg = document.getElementById("outputMsg");
 	outputMsg.innerHTML = "　";
 
 	switch (calcType) {
 	case 1:
-		setButtonColor(inputPlus);
+		setButtonColorSelected("inputPlus");
 		break;
 	case 2:
-		setButtonColor(inputMinus);
+		setButtonColorSelected("inputMinus");
 		break;
 	case 3:
-		setButtonColor(inputMultiply);
+		setButtonColorSelected("inputMultiply");
 		break;
 	case 4:
-		setButtonColor(inputDivide);
+		setButtonColorSelected("inputDivide");
 		break;
 	}
 
@@ -159,7 +159,7 @@ function clear(type) {
 
 	if (type == 0) {
 		calcType = -1;
-		resetButtonColor();
+		resetAllButtonsColor();
 		updateInputType(0);
 
 		var outputMsg = document.getElementById("outputMsg");
@@ -203,21 +203,11 @@ function pm(type) {
 }
 
 /* 色の変更 */
-function setButtonColor(button) {
-	button.style.color = "white";
-	button.style.backgroundColor = "teal";
-}
-
-function resetButtonColor() {
-	inputPlus.style.color = "buttontext";
-	inputMinus.style.color = "buttontext";
-	inputMultiply.style.color = "buttontext";
-	inputDivide.style.color = "buttontext";
-
-	inputPlus.style.backgroundColor = "buttonface";
-	inputMinus.style.backgroundColor = "buttonface";
-	inputMultiply.style.backgroundColor = "buttonface";
-	inputDivide.style.backgroundColor = "buttonface";
+function resetAllButtonsColor() {
+	resetButtonColor("inputPlus");
+	resetButtonColor("inputMinus");
+	resetButtonColor("inputMultiply");
+	resetButtonColor("inputDivide");
 }
 
 function updateInputType(type) {
