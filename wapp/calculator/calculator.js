@@ -315,114 +315,114 @@ function btnInputPM() {
 document.onkeydown = function(e) {
     switch (e.keyCode) {
 	case 9:
-            // Tab
-            btnInputTab();
-            break;
+		// Tab
+		btnInputTab();
+		break;
 
 	// 数字
-        case 48:
-            btnInput0();
-            break;
-        case 49:
-            btnInput1();
-            break;
-        case 50:
-            btnInput2();
-            break;
-        case 51:
-            btnInput3();
-            break;
-        case 52:
-            btnInput4();
-            break;
-        case 53:
-            btnInput5();
-            break;
-        case 54:
-            btnInput6();
-            break;
-        case 55:
-            btnInput7();
-            break;
-        case 56:
-            btnInput8();
-            break;
-        case 57:
-            btnInput9();
-            break;
+	case 48:
+		btnInput0();
+		break;
+	case 49:
+		btnInput1();
+		break;
+	case 50:
+		btnInput2();
+		break;
+	case 51:
+		btnInput3();
+		break;
+	case 52:
+		btnInput4();
+		break;
+	case 53:
+		btnInput5();
+		break;
+	case 54:
+		btnInput6();
+		break;
+	case 55:
+		btnInput7();
+		break;
+	case 56:
+		btnInput8();
+		break;
+	case 57:
+		btnInput9();
+		break;
 
 	case 65:
-            // A
-            btnInputAC();
-            break;
+		// A
+		btnInputAC();
+		break;
 	case 67:
-            // C
-            btnInputClear();
-            break;
+		// C
+		btnInputClear();
+		break;
 	case 68:
-            // D
-            btnInputDecimal();
-            break;
+		// D
+		btnInputDecimal();
+		break;
 	case 77:
-            // M
-            pm(2);
-            break;
+		// M
+		pm(2);
+		break;
 	case 80:
-            // P
-            pm(1);
-            break;
+		// P
+		pm(1);
+		break;
 	case 84:
-            // T
-            btnInputTab();
-            break;
+		// T
+		btnInputTab();
+		break;
 
 	// テンキーの数字
-        case 96:
-            btnInput0();
-            break;
-        case 97:
-            btnInput1();
-            break;
-        case 98:
-            btnInput2();
-            break;
-        case 99:
-            btnInput3();
-            break;
-        case 100:
-            btnInput4();
-            break;
-        case 101:
-            btnInput5();
-            break;
-        case 102:
-            btnInput6();
-            break;
-        case 103:
-            btnInput7();
-            break;
-        case 104:
-            btnInput8();
-            break;
-        case 105:
-            btnInput9();
-            break;
+	case 96:
+		btnInput0();
+		break;
+	case 97:
+		btnInput1();
+		break;
+	case 98:
+		btnInput2();
+		break;
+	case 99:
+		btnInput3();
+		break;
+	case 100:
+		btnInput4();
+		break;
+	case 101:
+		btnInput5();
+		break;
+	case 102:
+		btnInput6();
+		break;
+	case 103:
+		btnInput7();
+		break;
+	case 104:
+		btnInput8();
+		break;
+	case 105:
+		btnInput9();
+		break;
 
 	// テンキーの記号
-        case 106:
-            btnInputMultiply();
-            break;
-        case 107:
-            btnInputPlus();
-            break;
-        case 109:
-            btnInputMinus();
-            break;
-        case 110:
-            btnInputDecimal();
-            break;
-        case 111:
-            btnInputDivide();
-            break;
+	case 106:
+		btnInputMultiply();
+		break;
+	case 107:
+		btnInputPlus();
+		break;
+	case 109:
+		btnInputMinus();
+		break;
+	case 110:
+		btnInputDecimal();
+		break;
+	case 111:
+		btnInputDivide();
+		break;
     }
 }
