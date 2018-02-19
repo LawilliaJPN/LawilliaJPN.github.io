@@ -32,9 +32,9 @@
 						<td id="output" colspan="3">00:00:00.00</td>
 					</tr>
 					<tr>
-						<td><button id="on_off" onclick="btnOnOff();">START:S</button></td>
-						<td><button onclick="btnClear();">CLEAR:C</button></td>
-						<td><button onclick="btnLap();">LAP:L</button></td>
+						<td><button id="on_off" onclick="btnOnOff();">START</button></td>
+						<td><button onclick="btnClear();">CLEAR</button></td>
+						<td><button onclick="btnLap();">LAP</button></td>
 					</tr>
 				</table>
 				<table class="stopwatch">
@@ -42,9 +42,9 @@
 						<th colspan="3">DISPLAY</th>
 					</tr>
 					<tr>
-						<td><button id="displaySymbol" onclick="btnDisplaySymbol();">":":1</button></td>
-						<td><button id="displayEnglish" onclick="btnDisplayEnglish();">"h":2</button></td>
-						<td><button id="displayJapanese" onclick="btnDisplayJapanese();">"時間":3</button></td>
+						<td><button id="displaySymbol" onclick="btnDisplaySymbol();">：</button></td>
+						<td><button id="displayEnglish" onclick="btnDisplayEnglish();">h</button></td>
+						<td><button id="displayJapanese" onclick="btnDisplayJapanese();">時間</button></td>
 					</tr>
 				</table>
 				<table class="stopwatch">
@@ -95,9 +95,28 @@
 				</table>
 				<p id="graph">
 				</p>
+
+				<h2>使用方法</h2>
+				<p>
+					簡単なストップウォッチです。<br />
+					LAP・SPLITが2つ以上の時に、グラフが表示されます。<br />
+					LAP・SPLITは、最新の10個が表示されます。<br />
+					LAP・SPLITのグラフは、最新の100個が表示されます。
+				</p>
+				<table>
+					<tr><th>ボタン</th><th>ショートカット</th><th>用途</th></tr>
+					<tr><th>START・STOP</th><td>S</td><td>開始・停止</td></tr>
+					<tr><th>CLEAR</th><td>C</td><td>記録をクリア</td></tr>
+					<tr><th>LAP</th><td>L</td><td>LAP・SPLITを記録</td></tr>
+					<tr><th>：</th><td>1</td><td rowspan="3">表示の変更</td></tr>
+					<tr><th>h</th><td>2</td></tr>
+					<tr><th>時間</th><td>3</td></tr>
+				</table>
+
 				<h2>更新履歴</h2>
 				<table>
 					<tr><th>日付</th><th>更新内容</th></tr>
+					<tr><td>2018-02-20</td><td>使用方法を追記</td></tr>
 					<tr><td>2017-12-16</td><td>LAPグラフ実装</td></tr>
 					<tr><td>2017-12-15</td><td>SPLITグラフ実装</td></tr>
 					<tr><td rowspan="2">2017-12-14</td><td>表記切り替え実装</td></tr>
