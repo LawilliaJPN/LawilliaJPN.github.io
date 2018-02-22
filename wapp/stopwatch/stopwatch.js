@@ -140,14 +140,14 @@ function stop() {
 	isRunning = false;
 
 	var button = document.getElementById("on_off");
-	button.innerHTML = "START:S";
+	button.innerHTML = "START";
 }
 
 function start() {
 	isRunning = true;
 
 	var button = document.getElementById("on_off");
-	button.innerHTML = "STOP:S";
+	button.innerHTML = "STOP";
 }
 
 function printTime(c, Id) {
