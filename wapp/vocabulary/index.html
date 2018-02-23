@@ -20,10 +20,6 @@
 			<div class="contents">
 				<h1><a href="https://lawilliajpn.github.io">Practice to Create Websites by Lawillia</a></h1>
 				<h2>Web制作の練習 #04 Vocabulary Test</h2>
-				<p>
-					簡単な単語テストを作成していきます。
-				</p>
-
 				<h2>単語テスト</h2>
 				<p id="testQ"></p>
 				<p id="testA">解答：<input id="testInput"></p>
@@ -41,9 +37,28 @@
 				<p><button id="btnList" onclick="btnList();">表示</button></p>
 				<table id="list"></table>
 
+				<h2>使用方法</h2>
+				<table>
+					<tr><th>機能</th><th>概要</th></tr>
+					<tr><th>単語テスト</th><td>登録された単語からランダムで出題</td></tr>
+					<tr><th>単語登録</th><td>新たな単語を登録</td></tr>
+					<tr><th>単語一覧</th><td>登録された単語の一覧の表示や削除</td></tr>
+				</table>
+				<p>
+					まず「単語登録」から「問題」「解答」を「登録」してください。<br />
+					単語の保存には「Web Storage API」を利用しています。<br />
+					「Web Storage API」に対応していないブラウザでは利用できません。
+				</p>
+				<p>
+					単語を登録すると、「単語テスト」や「単語一覧」を利用できます。<br />
+					「単語一覧」から正解数・出題数・正答率を見ることができます。<br />
+					単語の追加は「単語登録」から、単語の削除は「単語一覧」からできます。<br />
+				</p>
+
 				<h2>更新履歴</h2>
 				<table>
 					<tr><th>日付</th><th>更新内容</th></tr>
+					<tr><td>2018-02-24</td><td>使用方法を追記</td></tr>
 					<tr><td>2018-01-30</td><td>単語一覧 実装</td></tr>
 					<tr><td rowspan="2">2018-01-29</td><td>単語テスト 実装</td></tr>
 					<tr><td>単語登録 実装</td></tr>
