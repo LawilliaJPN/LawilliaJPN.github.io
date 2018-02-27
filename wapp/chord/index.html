@@ -20,17 +20,11 @@
 			<div class="contents">
 				<h1><a href="https://lawilliajpn.github.io">Practice to Create Websites by Lawillia</a></h1>
 				<h2>Web制作の練習 #05 Chord</h2>
-				<p>
-					簡単な和音再生を作成していきます。<br />
-					Web Audio APIに対応したブラウザでのみ再生可能です。<br />
-					また、環境により、単音しか再生されない場合があります。
-                </p>
-
                 <table>
                     <tr><th colspan="2">操作</th></tr>
 					<tr>
 						<td><button id="btnPlay" onclick="btnPlay();">再生</button></td>
-						<td><input id="volume" type="range" min="0" max="0.5" value="0.5" step="0.1"></td>
+						<td><input id="volume" type="range" min="0" max="0.5" value="0.1" step="0.01"></td>
 					</tr>
 					<tr>
 						<td><button id="btnDiatonic" onclick="btnDiatonic();">ダイアトニック</button></td>
@@ -113,11 +107,36 @@
 						<td><button id="btnDim11" onclick="btnDim(11);">Bm(b5)</button></td>
 						<td><button id="btnAug11" onclick="btnAug(11);">Baug</button></td>
 					</tr>
-                </table>
+				</table>
+
+				<h2>使用方法</h2>
+				<p>
+					「Web Audio API」を利用した和音再生アプリケーションです。<br />
+					同APIに対応していないブラウザでは再生ができません。<br />
+					また、対応していても環境によっては正しく再生されないことがあります。
+				</p>
+
+				<h3>和音再生</h3>
+				<p>
+					青緑のボタンとなっているコードが、選択中のコードです。<br />
+					「再生」のボタンを押すと、選択中のコードを鳴らします。<br />
+					「再生」「停止」ボタンの右のスライダで、ボリュームを調整できます。<br />
+					ボリュームはリアルタイムでは反映されず、「再生」ボタンやコードを変更する時に反映されます。
+				</p>
+
+				<h3>ダイアトニックコード表示</h3>
+				<p>
+					赤色のボタンとなっているコードが、ダイアトニックコードです。<br />
+					「ダイアトニック」のボタンを押すと、選択しているコードを主和音とするスケールのダイアトニックコードを表示します。<br />
+					メジャースケールとマイナースケールに対応しています。<br />
+					同じコードで複数回押すと表示・非表示を切り替えることが可能です。<br />
+					マイナーコードの場合は、ナチュラル・ハーモニック・メロディックの切り替えも可能です。
+				</p>
                 
 				<h2>更新履歴</h2>
 				<table>
 					<tr><th>日付</th><th>更新内容</th></tr>
+					<tr><td>2018-02-27</td><td>使用方法を追記</td></tr>
 					<tr><td>2018-02-10</td><td>ダイアトニックコード表示<br/>マイナースケール実装</td></tr>
 					<tr><td rowspan="2">2018-02-06</td><td>ダイアトニックコード表示<br/>メジャースケール実装</td></tr>
 					<tr><td>音量調整 実装</td></tr>
