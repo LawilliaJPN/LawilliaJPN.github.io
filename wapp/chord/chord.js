@@ -29,7 +29,7 @@ function stop() {
 function updateSounds() {
     if (!play) return;
     sound[BASS_SOUND][tempRoot].stop();
-    for (var i = 0; i < chord.length; i++) {
+    for (var i = 0; i < tempChord.length; i++) {
         sound[CHORD_SOUNDS][calcSound(tempRoot, tempChord[i])].stop();
     }
     initSounds();
@@ -89,6 +89,18 @@ function setChord() {
     case 3:
         chord = [0, 4, 8];
         break;
+    case 4:
+        chord = [0, 4, 7, 11];
+        break;
+    case 5:
+        chord = [0, 3, 7, 10];
+        break;
+    case 6:
+        chord = [0, 4, 7, 10];
+        break;
+    case 7:
+        chord = [0, 3, 6, 10];
+        break;
     }
 }
 
@@ -99,6 +111,11 @@ function resetAllButtonsColor() {
         resetButtonColor("btnMin" + i);
         resetButtonColor("btnDim" + i);
         resetButtonColor("btnAug" + i);
+
+        resetButtonColor("btnMaj7" + i);
+        resetButtonColor("btnMin7" + i);
+        resetButtonColor("btnD7" + i);
+        resetButtonColor("btnMin7b5" + i);
     }
 }
 
@@ -118,6 +135,35 @@ function getButtonId() {
     case 3:
         typeOfButton += "Aug" +root;
         break;
+    case 4:
+        typeOfButton += "Maj7" +root;
+        break;
+    case 5:
+        typeOfButton += "Min7" +root;
+        break;
+    case 6:
+        typeOfButton += "D7" +root;
+        break;
+    case 7:
+        typeOfButton += "Min7b5" +root;
+        break;
+    }
+
+    return typeOfButton;
+}
+
+function getButtonScaleId() {
+    typeOfButton = "btn";
+
+    switch (chordId) {
+    case 0:
+    case 4:
+        typeOfButton += "Maj" +root;
+        break;
+    case 1:
+    case 5:
+        typeOfButton += "Min" +root;
+        break;
     }
 
     return typeOfButton;
@@ -128,6 +174,7 @@ function displayDiatonic() {
 
     switch (scaleId) {
     case 0:
+        // 三和音
         setButtonColorMarkedRed("btnMaj" +calcSound(scaleRoot, 0));
         setButtonColorMarkedRed("btnMin" +calcSound(scaleRoot, 2));
         setButtonColorMarkedRed("btnMin" +calcSound(scaleRoot, 4));
@@ -135,9 +182,18 @@ function displayDiatonic() {
         setButtonColorMarkedRed("btnMaj" +calcSound(scaleRoot, 7));
         setButtonColorMarkedRed("btnMin" +calcSound(scaleRoot, 9));
         setButtonColorMarkedRed("btnDim" +calcSound(scaleRoot, 11));
+        // 四和音
+        setButtonColorMarkedRed("btnMaj7" +calcSound(scaleRoot, 0));
+        setButtonColorMarkedRed("btnMin7" +calcSound(scaleRoot, 2));
+        setButtonColorMarkedRed("btnMin7" +calcSound(scaleRoot, 4));
+        setButtonColorMarkedRed("btnMaj7" +calcSound(scaleRoot, 5));
+        setButtonColorMarkedRed("btnD7" +calcSound(scaleRoot, 7));
+        setButtonColorMarkedRed("btnMin7" +calcSound(scaleRoot, 9));
+        setButtonColorMarkedRed("btnMin7b5" +calcSound(scaleRoot, 11));
         break;
     case 1:
         if (diatonic == 1) {
+            // 三和音
             setButtonColorMarkedRed("btnMin" +calcSound(scaleRoot, 0));
             setButtonColorMarkedRed("btnDim" +calcSound(scaleRoot, 2));
             setButtonColorMarkedRed("btnMaj" +calcSound(scaleRoot, 3));
@@ -145,7 +201,16 @@ function displayDiatonic() {
             setButtonColorMarkedRed("btnMin" +calcSound(scaleRoot, 7));
             setButtonColorMarkedRed("btnMaj" +calcSound(scaleRoot, 8));
             setButtonColorMarkedRed("btnMaj" +calcSound(scaleRoot, 10));
+            // 四和音
+            setButtonColorMarkedRed("btnMin7" +calcSound(scaleRoot, 0));
+            setButtonColorMarkedRed("btnMin7b5" +calcSound(scaleRoot, 2));
+            setButtonColorMarkedRed("btnMaj7" +calcSound(scaleRoot, 3));
+            setButtonColorMarkedRed("btnMin7" +calcSound(scaleRoot, 5));
+            setButtonColorMarkedRed("btnMin7" +calcSound(scaleRoot, 7));
+            setButtonColorMarkedRed("btnMaj7" +calcSound(scaleRoot, 8));
+            setButtonColorMarkedRed("btnD7" +calcSound(scaleRoot, 10));
         } else if (diatonic == 2) {
+            // 三和音
             setButtonColorMarkedRed("btnMin" +calcSound(scaleRoot, 0));
             setButtonColorMarkedRed("btnDim" +calcSound(scaleRoot, 2));
             setButtonColorMarkedRed("btnAug" +calcSound(scaleRoot, 3));
@@ -153,7 +218,16 @@ function displayDiatonic() {
             setButtonColorMarkedRed("btnMaj" +calcSound(scaleRoot, 7));
             setButtonColorMarkedRed("btnMaj" +calcSound(scaleRoot, 8));
             setButtonColorMarkedRed("btnDim" +calcSound(scaleRoot, 11));
+            // 四和音
+            // 0mM7
+            setButtonColorMarkedRed("btnMin7b5" +calcSound(scaleRoot, 2));
+            // 3M7(#5)
+            setButtonColorMarkedRed("btnMin7" +calcSound(scaleRoot, 5));
+            setButtonColorMarkedRed("btnD7" +calcSound(scaleRoot, 7));
+            setButtonColorMarkedRed("btnD7" +calcSound(scaleRoot, 8));
+            // 11dim7
         } else if (diatonic == 3) {
+            // 三和音
             setButtonColorMarkedRed("btnMin" +calcSound(scaleRoot, 0));
             setButtonColorMarkedRed("btnMin" +calcSound(scaleRoot, 2));
             setButtonColorMarkedRed("btnAug" +calcSound(scaleRoot, 3));
@@ -161,6 +235,14 @@ function displayDiatonic() {
             setButtonColorMarkedRed("btnMaj" +calcSound(scaleRoot, 7));
             setButtonColorMarkedRed("btnDim" +calcSound(scaleRoot, 9));
             setButtonColorMarkedRed("btnDim" +calcSound(scaleRoot, 11));
+            // 四和音
+            // 0mM7
+            setButtonColorMarkedRed("btnMin7" +calcSound(scaleRoot, 2));
+            // 3M7(#5)
+            setButtonColorMarkedRed("btnD7" +calcSound(scaleRoot, 5));
+            setButtonColorMarkedRed("btnD7" +calcSound(scaleRoot, 7));
+            setButtonColorMarkedRed("btnMin7b5" +calcSound(scaleRoot, 9));
+            setButtonColorMarkedRed("btnMin7b5" +calcSound(scaleRoot, 11));
         }
     }
 }
@@ -172,7 +254,17 @@ function updateButtonColor() {
 }
 
 function updateDiatonic() {
-    if ((root == scaleRoot) && (chordId == scaleId)) {        
+    var id = chordId;
+    switch (id) {
+    case 4:
+        id = 0;
+        break;
+    case 5:
+        id = 1;
+        break;
+    }
+
+    if ((root == scaleRoot) && (id == scaleId)) {        
         switch (scaleId) {
         case 0:
             if (diatonic != 0) diatonic = 0;
@@ -191,9 +283,8 @@ function updateDiatonic() {
         diatonic = 1;
     }
 
-    console.log(diatonic);
     scaleRoot = root;
-    scaleId = chordId;
+    scaleId = id;
     updateNameOfScale();
     updateButtonColor();
 }
@@ -206,12 +297,12 @@ function updateNameOfScale() {
 
     switch (scaleId) {
         case 0:
-            updateHtml("scale", document.getElementById(getButtonId()).innerHTML + "スケール");
+            updateHtml("scale", document.getElementById(getButtonScaleId()).innerHTML + "スケール");
             break;
         case 1:
-            if (diatonic == 1) updateHtml("scale", "ナチュラル" + document.getElementById(getButtonId()).innerHTML + "スケール");
-            else if (diatonic == 2) updateHtml("scale", "ハーモニック" + document.getElementById(getButtonId()).innerHTML + "スケール");
-            else updateHtml("scale", "メロディック" + document.getElementById(getButtonId()).innerHTML + "スケール");
+            if (diatonic == 1) updateHtml("scale", "ナチュラル" + document.getElementById(getButtonScaleId()).innerHTML + "スケール");
+            else if (diatonic == 2) updateHtml("scale", "ハーモニック" + document.getElementById(getButtonScaleId()).innerHTML + "スケール");
+            else updateHtml("scale", "メロディック" + document.getElementById(getButtonScaleId()).innerHTML + "スケール");
             break;
         default:
             updateHtml("scale", "未実装");
@@ -244,4 +335,21 @@ function btnDim(num) {
 
 function btnAug(num) {
     inputChord(3, num);
+}
+
+// 四和音
+function btnMaj7(num) {
+    inputChord(4, num);
+}
+
+function btnMin7(num) {
+    inputChord(5, num);
+}
+
+function btnD7(num) {
+    inputChord(6, num);
+}
+
+function btnMin7b5(num) {
+    inputChord(7, num);
 }
