@@ -4,9 +4,9 @@ var deletes = 0;
 
 /* 機能 */
 function addCounter() {
-    var strTextField = document.getElementById("name").value;
-    if (strTextField == "") {
-        strTextField = "Counter" + (counters.length+1+deletes);
+    var strTextField = document.getElementById('name').value;
+    if (strTextField == '') {
+        strTextField = 'Counter' + (counters.length+1+deletes);
     }
 
     counters.push(0);
@@ -23,7 +23,7 @@ function clearCounter() {
 }
 
 function deleteCounter() {
-    var strTextField = document.getElementById("name").value;
+    var strTextField = document.getElementById('name').value;
     for (var i = 0; i < counters.length; i++) {
         if (counterNames[i] == strTextField) {
             counters.splice(i, 1);
@@ -56,7 +56,7 @@ function outputCounter() {
                     + '<td><button onclick="btnPlus(' + i +  ');">＋</button></td></tr>';
     }
     
-    var output = document.getElementById("output");
+    var output = document.getElementById('output');
     output.innerHTML = outputStr;
 }
 

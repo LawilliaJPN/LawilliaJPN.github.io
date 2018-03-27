@@ -19,7 +19,7 @@ initSounds();
 audioGain.connect(audioCtx.destination);
 
 function initSounds() {
-    audioGain.gain.value = document.getElementById("volume").value;
+    audioGain.gain.value = document.getElementById('volume').value;
 
     for (var i =0; i <SOUND_X; i++) {
         for (var k =0; k <SOUND_Y; k++) {
@@ -35,5 +35,5 @@ function initSound(i, k) {
     // 周波数
     sound[i][k].frequency.value = hz[i][k];
     // 音色
-    sound[i][k].type = "sine";
+    sound[i][k].type = 'sine';
 }

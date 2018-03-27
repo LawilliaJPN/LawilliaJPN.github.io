@@ -4,23 +4,23 @@ var displayed = false;
 
 /* 機能 */
 function resisterWord() {
-    var wordQ = document.getElementById("wordQ").value;
-    var wordA = document.getElementById("wordA").value;
+    var wordQ = document.getElementById('wordQ').value;
+    var wordA = document.getElementById('wordA').value;
 
     // 例外処理
-    if (wordA.includes("／")) {
-        updateHtml("resisterMsg", "エラー：「／」を含む文字列を登録することはできません。");
+    if (wordA.includes('／')) {
+        updateHtml('resisterMsg', 'エラー：「／」を含む文字列を登録することはできません。');
         return;
-    } else if (wordQ == "") {
-        updateHtml("resisterMsg", "エラー：「問題」が空欄です。");
+    } else if (wordQ == '') {
+        updateHtml('resisterMsg', 'エラー：「問題」が空欄です。');
         return;
-    } else if (wordA == "") {
-        updateHtml("resisterMsg", "エラー：「解答」が空欄です。");
+    } else if (wordA == '') {
+        updateHtml('resisterMsg', 'エラー：「解答」が空欄です。');
         return;
     }
 
-    updateHtml("resisterMsg", "問題「" + wordQ + "」、解答「" + wordA + "」を登録しました。");
-    wordA = wordA + "／" + 0 + "／" + 0;
+    updateHtml('resisterMsg', '問題「' + wordQ + '」、解答「' + wordA + '」を登録しました。');
+    wordA = wordA + '／' + 0 + '／' + 0;
     localStorage.setItem(wordQ, wordA);
 }
 
@@ -32,43 +32,43 @@ function removeWord(i) {
 function displayTest() {
     // 例外処理
     if (localStorage.length == 0) {
-        updateHtml("testQ", "問題：");
-        updateHtml("testMsg", "エラー：単語が登録されていません。");
+        updateHtml('testQ', '問題：');
+        updateHtml('testMsg', 'エラー：単語が登録されていません。');
         return;
     }
 
     var num = Math.floor(Math.random()*localStorage.length);
     testQ = localStorage.key(num);
-    testA = localStorage.getItem(testQ).split("／");
+    testA = localStorage.getItem(testQ).split('／');
 
-    updateHtml("testQ", "問題：" + testQ);
-    updateHtml("testA", '解答：<input id="testInput">');
-    updateHtml("testMsg", "　");
+    updateHtml('testQ', '問題：' + testQ);
+    updateHtml('testA', '解答：<input id="testInput">');
+    updateHtml('testMsg', '　');
     answered = false;
 }
 
 function decideTest() {
-    var input = document.getElementById("testInput").value;
+    var input = document.getElementById('testInput').value;
 
     // 例外処理
     if (answered) {
-        updateHtml("testMsg", "エラー：解答済みです。「次の問題」を押してください。");
+        updateHtml('testMsg', 'エラー：解答済みです。「次の問題」を押してください。');
         return;
-    } else if (input == "") {
-        updateHtml("testMsg", "エラー：「解答」が空欄です。");
+    } else if (input == '') {
+        updateHtml('testMsg', 'エラー：「解答」が空欄です。');
         return;
     }
 
     if (input == testA[0]) {
-        updateHtml("testMsg", "正解です。");
+        updateHtml('testMsg', '正解です。');
         testA[1]++;
     } else {
-        updateHtml("testMsg", "不正解です。正答：" +testA[0] + "です。");
+        updateHtml('testMsg', '不正解です。正答：' +testA[0] + 'です。');
     }
     testA[2]++;
 
     localStorage.removeItem(testQ);
-    localStorage.setItem(testQ, testA[0] + "／" + testA[1] + "／" + testA[2]);
+    localStorage.setItem(testQ, testA[0] + '／' + testA[1] + '／' + testA[2]);
     answered = true;
 }
 
@@ -78,12 +78,12 @@ function displayList() {
 
     for (var i = 0; i < localStorage.length; i++) {
         wordQ = localStorage.key(i);
-        wordA = localStorage.getItem(wordQ).split("／");
+        wordA = localStorage.getItem(wordQ).split('／');
         if (wordA[2] == 0) {
-            rate = "-";
+            rate = '-';
         } else {
             rate = Math.round(wordA[1] / wordA[2] * 100);
-            rate = "正答率：" + rate + "％";
+            rate = '正答率：' + rate + '％';
         }
 
         outputStr = outputStr 
@@ -94,20 +94,20 @@ function displayList() {
                     + '<td><button onclick="btnDelete(' + i +  ');">削除</button></td></tr>';
     }
     
-    var output = document.getElementById("list");
+    var output = document.getElementById('list');
     output.innerHTML = outputStr;
 
-    var button = document.getElementById("btnList");
-    button.innerHTML = "非表示";
+    var button = document.getElementById('btnList');
+    button.innerHTML = '非表示';
     displayed = true;
 }
 
 function hideList() {
-    var output = document.getElementById("list");
-    output.innerHTML = "";
+    var output = document.getElementById('list');
+    output.innerHTML = '';
 
-    var button = document.getElementById("btnList");
-    button.innerHTML = "表示";
+    var button = document.getElementById('btnList');
+    button.innerHTML = '表示';
     displayed = false;
 }
 
@@ -119,7 +119,7 @@ function updateHtml(id, str) {
 
 function resetMsg() {
     displayTest();
-    updateHtml("resisterMsg", "　");
+    updateHtml('resisterMsg', '　');
 }
 
 /* ボタン */

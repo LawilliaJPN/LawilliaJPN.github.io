@@ -15,46 +15,46 @@ function input(num) {
 
 	// 例外処理
 	if (value >= 100000000000000) {
-		var outputMsg = document.getElementById("outputMsg");
-		outputMsg.innerHTML = "エラー：入力可能な数は、15桁までです。";
+		var outputMsg = document.getElementById('outputMsg');
+		outputMsg.innerHTML = 'エラー：入力可能な数は、15桁までです。';
 		return;
 	}
 
 	if ((inputType == 0) || (inputType == 1)) {
 		if (value1Decimal >= 2) {
-			value = "" + value + num;
+			value = '' + value + num;
 			value1Decimal++;
 			value = parseFloat(value);
 		} else if (value1Decimal == 1) {
-			value = "" + value + "." + num;
+			value = '' + value + '.' + num;
 			value1Decimal++;
 			value = parseFloat(value);
 		} else {
 			if (value == 0) value = num;
-			else value = "" + value + num;
+			else value = '' + value + num;
 			value = parseInt(value, 10);
 		}
 
 		value1 = value;
-		outputValue(value, "outputValue1");
+		outputValue(value, 'outputValue1');
 
 	} else if (inputType == 2) {
 		if (value2Decimal >= 2) {
-			value = "" + value + num;
+			value = '' + value + num;
 			value2Decimal++;
 			value = parseFloat(value);
 		} else if (value2Decimal == 1) {
-			value = "" + value + "." + num;
+			value = '' + value + '.' + num;
 			value2Decimal++;
 			value = parseFloat(value);
 		} else {
 			if (value == 0) value = num;
-			else value = "" + value + num;
+			else value = '' + value + num;
 			value = parseInt(value, 10);
 		}
 
 		value2 = value;
-		outputValue(value, "outputValue2");
+		outputValue(value, 'outputValue2');
 	}
 
 	if (calcType != -1) {
@@ -66,21 +66,21 @@ function calculation() {
 	buttonType = 2;
 	resetAllButtonsColor();
 
-	var outputMsg = document.getElementById("outputMsg");
-	outputMsg.innerHTML = "　";
+	var outputMsg = document.getElementById('outputMsg');
+	outputMsg.innerHTML = '　';
 
 	switch (calcType) {
 	case 1:
-		setButtonColorSelected("inputPlus");
+		setButtonColorSelected('inputPlus');
 		break;
 	case 2:
-		setButtonColorSelected("inputMinus");
+		setButtonColorSelected('inputMinus');
 		break;
 	case 3:
-		setButtonColorSelected("inputMultiply");
+		setButtonColorSelected('inputMultiply');
 		break;
 	case 4:
-		setButtonColorSelected("inputDivide");
+		setButtonColorSelected('inputDivide');
 		break;
 	}
 
@@ -105,8 +105,8 @@ function calc() {
 		result = value1 * value2;
 
 		if (result >= 100000000000000) {
-			var outputMsg = document.getElementById("outputMsg");
-			outputMsg.innerHTML = "注意：桁数の大きなかけ算は不正確です。";
+			var outputMsg = document.getElementById('outputMsg');
+			outputMsg.innerHTML = '注意：桁数の大きなかけ算は不正確です。';
 		}
 
 		break;
@@ -114,14 +114,14 @@ function calc() {
 		result = value1 / value2;
 
 		if (value2 >= 100000) {
-			var outputMsg = document.getElementById("outputMsg");
-			outputMsg.innerHTML = "注意：分母の大きな割り算は不正確です。";
+			var outputMsg = document.getElementById('outputMsg');
+			outputMsg.innerHTML = '注意：分母の大きな割り算は不正確です。';
 		}
 
 		break;
 	}
 
-	outputValue(result, "outputResult");
+	outputValue(result, 'outputResult');
 }
 
 function outputValue(value, strOutput) {
@@ -135,8 +135,8 @@ function outputValue(value, strOutput) {
 		output.innerHTML = strValue;
 	}
 
-	if (value < 0) output.style.color = "red";
-	else output.style.color = "black";
+	if (value < 0) output.style.color = 'red';
+	else output.style.color = 'black';
 }
 
 function clear(type) {
@@ -144,16 +144,16 @@ function clear(type) {
 		value1 = 0;
 		value1Decimal = 0;
 
-		var outputValue1 = document.getElementById("outputValue1");
-		outputValue1.innerHTML = "　";
+		var outputValue1 = document.getElementById('outputValue1');
+		outputValue1.innerHTML = '　';
 	}
 
 	if ((type == 0) || (type == 2)) {
 		value2 = 0;
 		value2Decimal = 0;
 
-		var outputValue2 = document.getElementById("outputValue2");
-		outputValue2.innerHTML = "　";
+		var outputValue2 = document.getElementById('outputValue2');
+		outputValue2.innerHTML = '　';
 	}
 
 
@@ -162,12 +162,12 @@ function clear(type) {
 		resetAllButtonsColor();
 		updateInputType(0);
 
-		var outputMsg = document.getElementById("outputMsg");
-		outputMsg.innerHTML = "　";
+		var outputMsg = document.getElementById('outputMsg');
+		outputMsg.innerHTML = '　';
 	}
 
-	var outputResult = document.getElementById("outputResult");
-	outputResult.innerHTML = "　";
+	var outputResult = document.getElementById('outputResult');
+	outputResult.innerHTML = '　';
 }
 
 function decimal() {
@@ -190,35 +190,35 @@ function pm(type) {
 		} else {
 			if ((type == 0) || (type == 2)) value1 *= -1;
 		}
-		outputValue(value1, "outputValue1");
+		outputValue(value1, 'outputValue1');
 	} else if (inputType == 2) {
 		if (value2 < 0) {
 			if ((type == 0) || (type == 1)) value2 *= -1;
 		} else {
 			if ((type == 0) || (type == 2)) value2 *= -1;
 		}
-		outputValue(value2, "outputValue2");
+		outputValue(value2, 'outputValue2');
 	}
 	calc();
 }
 
 /* 色の変更 */
 function resetAllButtonsColor() {
-	resetButtonColor("inputPlus");
-	resetButtonColor("inputMinus");
-	resetButtonColor("inputMultiply");
-	resetButtonColor("inputDivide");
+	resetButtonColor('inputPlus');
+	resetButtonColor('inputMinus');
+	resetButtonColor('inputMultiply');
+	resetButtonColor('inputDivide');
 }
 
 function updateInputType(type) {
 	inputType = type;
 
 	if ((inputType == 0) || (inputType == 1)) {
-		outputValue1.style.backgroundColor = "#fcc";
-		outputValue2.style.backgroundColor = "white";
+		outputValue1.style.backgroundColor = '#fcc';
+		outputValue2.style.backgroundColor = 'white';
 	} else if (inputType == 2) {
-		outputValue1.style.backgroundColor = "white";
-		outputValue2.style.backgroundColor = "#fcc";
+		outputValue1.style.backgroundColor = 'white';
+		outputValue2.style.backgroundColor = '#fcc';
 	}
 }
 
