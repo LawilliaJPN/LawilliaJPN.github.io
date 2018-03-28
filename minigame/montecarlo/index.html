@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<!-- 文字コード -->
+		<meta charset="utf-8">
+
+		<!-- デバイスに幅を合わせる -->
+		<meta name="viewport" content="width=device-width">
+
+		<!-- CSSの適用 -->
+		<link rel="stylesheet" href="../../css/style.css">
+		<link rel="stylesheet" href="montecarlo.css">
+
+		<!-- ページタイトル -->
+		<title>Monte Carlo／モンテカルロ</title>
+	</head>
+
+	<body>
+		<div class="main">
+			<div class="contents">
+				<h1><a href="https://lawilliajpn.github.io">Practice to Create Websites by Lawillia</a></h1>
+				<h2>Monte Carlo／モンテカルロ</h2>
+				<p id="game"></p>
+				<p id="button">
+					<button id="startVE" onclick="btnStart(9);">Very Easy</button>
+					<button id="startE" onclick="btnStart(11);">Easy</button>
+					<button id="startN" onclick="btnStart(13);">Normal</button>
+					<button id="startH" onclick="btnStart(15);">Hard</button>
+					<button id="startVH" onclick="btnStart(17);">Very Hard</button>
+				</p>
+
+                <h2>使用方法</h2>
+                <p>
+					トランプのモンテカルロです。<br />
+					Very Easyは1～9、Easyは1～11、Normalは1～13、Hardは1～15、Very Hardは1～17のカードを使用します。<br />
+					縦・横・斜めに隣接した、同じ数字のカードを選択することで、それらを消すことができます。<br />
+					すべて消すことができたら、クリアです。<br />
+					リトライしたい場合は、難易度ボタンを押してください。
+				</p>
+				<p id="share">
+					<a href="https://twitter.com/share" class="twitter-share-button" data-text="https://lawilliajpn.github.io/minigame/montecarlo/" data-hashtags="モンテカルロPCW">Tweet</a>
+				</p>
+
+				<h2>更新履歴</h2>
+				<table>
+					<tr><th>日付</th><th>更新内容</th></tr>
+					<tr><td>2018-03-28</td><td>ページ作成</td></tr>
+				</table>
+			</div>
+		</div>
+
+		<!-- JavaScriptの適用 -->
+		<script type="text/javascript" src="../../js/toollibs.js"></script>
+		<script type="text/javascript" src="../cardgame.js"></script>
+		<script type="text/javascript" src="montecarlo.js"></script>
+		<!-- Twitter共有 -->
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	</body>
+</html>
