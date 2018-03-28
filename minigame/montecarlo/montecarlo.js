@@ -61,48 +61,49 @@ function select(e) {
     var y = Math.floor((e.clientY - canvas.offsetTop) / (card.height + card.heightS));
     var num = card.numX * y + x;
 
-    if ((eventX <= card.width) && (eventY <= card.height)) {
-        if (selected.first != -1) {
-            selected.second = num;
+    if ((num < 0) || (field.length <= num)) return;
+    if ((card.width < eventX) || (card.height < eventY)) return;
 
-            if (((selected.first - 1) == selected.second) ||
-                ((selected.first + 1) == selected.second) ||
-                ((selected.first - card.numX) == selected.second) ||
-                ((selected.first + card.numX) == selected.second) ||
-                ((selected.first + card.numX - 1) == selected.second) || 
-                ((selected.first + card.numX + 1) == selected.second) || 
-                ((selected.first - card.numX - 1) == selected.second) || 
-                ((selected.first - card.numX + 1) == selected.second)) {
+    if (selected.first != -1) {
+        selected.second = num;
 
-                if (field[selected.first] == field[selected.second]) {
-                    field.splice(selected.first, 1);
-                    if (selected.first < selected.second) selected.second -= 1;
-                    field.splice(selected.second, 1);
-    
-                    for (var i = 0; i < 2; i++) {
-                        if (fieldNum < cards.length) {
-                            field.push(cards[fieldNum]);
-                            fieldNum++;
-                        }
+        if (((selected.first - 1) == selected.second) ||
+            ((selected.first + 1) == selected.second) ||
+            ((selected.first - card.numX) == selected.second) ||
+            ((selected.first + card.numX) == selected.second) ||
+            ((selected.first + card.numX - 1) == selected.second) || 
+            ((selected.first + card.numX + 1) == selected.second) || 
+            ((selected.first - card.numX - 1) == selected.second) || 
+            ((selected.first - card.numX + 1) == selected.second)) {
+
+            if (field[selected.first] == field[selected.second]) {
+                field.splice(selected.first, 1);
+                if (selected.first < selected.second) selected.second -= 1;
+                field.splice(selected.second, 1);
+
+                for (var i = 0; i < 2; i++) {
+                    if (fieldNum < cards.length) {
+                        field.push(cards[fieldNum]);
+                        fieldNum++;
                     }
-                    
-                    selected.first = selected.second = -1;
-                } else {
-                    selected.first = selected.second;
-                    selected.second = -1;
                 }
+                
+                selected.first = selected.second = -1;
             } else {
                 selected.first = selected.second;
                 selected.second = -1;
             }
-
         } else {
-            selected.first = num;
+            selected.first = selected.second;
+            selected.second = -1;
         }
-        
-        if (field.length == 0) drawScore();
-        else drawGame();
+
+    } else {
+        selected.first = num;
     }
+    
+    if (field.length == 0) drawScore();
+    else drawGame();
 }
 
 /*
