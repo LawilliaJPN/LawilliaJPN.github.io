@@ -53,6 +53,8 @@ function start() {
 
     cards = ['0', '0', '1', '1', '2', '2', '3', '3', '4', '4',
              '5', '5', '6', '6', '7', '7', '8', '8', '9', '9'];
+    shuffleCards(cards, 100);
+
     isPair = [false, false, false, false, false, false, false, false, false, false,
             false, false, false, false, false, false, false, false, false, false];
     isAlready = [false, false, false, false, false, false, false, false, false, false];
@@ -63,7 +65,6 @@ function start() {
     game.pair = cards.length /2;
     front.first = front.second = -1;
 
-    shuffle();
     drawGame();
 }
 
@@ -72,28 +73,17 @@ function clear() {
     drawScore();
 }
 
-function shuffle() {
-    var cardA, cardB, temp;
-
-    for (var i = 0; i < 100; i++) {
-        cardA = Math.floor(Math.random() * cards.length);
-        cardB = Math.floor(Math.random() * cards.length);
-        
-        temp = cards[cardA];
-        cards[cardA] = cards[cardB];
-        cards[cardB] = temp;
-    }
-}
-
 function select(e) {
     var eventX = (e.clientX - canvas.offsetLeft) % (card.width + card.widthS);
     var eventY = (e.clientY - canvas.offsetTop) % (card.height + card.heightS);
     var x = Math.floor((e.clientX - canvas.offsetLeft) / (card.width + card.widthS));
     var y = Math.floor((e.clientY - canvas.offsetTop) / (card.height + card.heightS));
-    var num = 5 * y + x;
+    var num = card.numX * y + x;
 
     if ((eventX <= card.width) && (eventY <= card.height) && (isPair[num] == false)) {
         if (front.first != -1) {
+            if (front.first == num) return;
+            
             front.second = num;
             drawGame();
 
