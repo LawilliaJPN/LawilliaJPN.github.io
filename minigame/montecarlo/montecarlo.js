@@ -22,7 +22,7 @@ window.onload = function() {
 /* ウィンドウのサイズが変わったとき */
 window.onresize = function() {
     updateCanvas();
-    if (game.isRunning) drawGame();
+    draw();
 }
 
 /* ボタン */
@@ -51,7 +51,7 @@ function start() {
 
     game.isRunning = false;
 
-    drawGame();
+    draw();
 }
 
 function select(e) {
@@ -102,8 +102,7 @@ function select(e) {
         selected.first = num;
     }
     
-    if (field.length == 0) drawScore();
-    else drawGame();
+    draw();
 }
 
 /*
@@ -131,6 +130,11 @@ function getCanvas() {
     canvas.addEventListener("mousedown",function(e){
         select(e);
     });
+}
+
+function draw() {
+    if (field.length == 0) drawScore();
+    else drawGame();
 }
 
 /* ゲームの描画 */

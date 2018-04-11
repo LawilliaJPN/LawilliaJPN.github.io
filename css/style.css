@@ -64,3 +64,15 @@ table tr th {
     font-weight: bold;
     background-color: #DDD;
 }
+
+/* 注意事項の強調 */
+.caution {
+    color: #DD0;
+    background-color: #900;
+    padding: 0.3em 0.5em 0.3em 0.8em;
+    border-radius: 25px;
+}
+
+.caution:before {
+    content: '※';
+}

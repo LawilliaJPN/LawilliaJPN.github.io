@@ -27,7 +27,7 @@ window.onload = function() {
 /* ウィンドウのサイズが変わったとき */
 window.onresize = function() {
     updateCanvas();
-    if (game.isRunning) drawGame();
+    draw();
 }
 
 /* ボタン */
@@ -65,12 +65,12 @@ function start() {
     game.pair = cards.length /2;
     front.first = front.second = -1;
 
-    drawGame();
+    draw();
 }
 
 function clear() {
     game.isRunning == false;
-    drawScore();
+    draw();
 }
 
 function select(e) {
@@ -85,7 +85,7 @@ function select(e) {
             if (front.first == num) return;
             
             front.second = num;
-            drawGame();
+            draw();
 
             game.isRunning = true;
             game.count++;
@@ -106,7 +106,7 @@ function select(e) {
             front.first = front.second = -1;
         } else {
             front.first = num;
-            drawGame();
+            draw();
             if (isAlready[cards[front.first]]) {
                 isAlreadyNow = true;
             } else {
@@ -142,6 +142,11 @@ function getCanvas() {
     canvas.addEventListener("mousedown",function(e){
         select(e);
     });
+}
+
+function draw() {
+    if (game.pair == 0) drawScore();
+    else drawGame();
 }
 
 /* ゲームの描画 */
