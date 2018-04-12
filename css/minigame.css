@@ -1,0 +1,9 @@
+#button {
+    text-align: center;
+}
+
+button {
+    color: #DDD;
+    background: linear-gradient(45deg, #000 10%, #222 90%);
+    vertical-align: middle;
+}

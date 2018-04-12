@@ -28,6 +28,7 @@ window.onresize = function() {
 /* ボタン */
 function btnStart(dif) {
     game.difficulty = dif;
+    setButtonColors();
     start();
 }
 
@@ -204,5 +205,32 @@ function getDifficulty() {
         return 'Hard';
     case 17:
         return 'Very Hard';
+    }
+}
+
+/* ボタンのデザインの変更 */
+function setButtonColors() {
+    resetButtonColor('startVE');
+    resetButtonColor('startE');
+    resetButtonColor('startN');
+    resetButtonColor('startH');
+    resetButtonColor('startVH');
+
+    switch(game.difficulty) {
+    case 9:
+        setButtonColorSelected('startVE');
+        break;
+    case 11:
+        setButtonColorSelected('startE');
+        break;
+    case 13:
+        setButtonColorSelected('startN');
+        break;
+    case 15:
+        setButtonColorSelected('startH');
+        break;
+    case 17:
+        setButtonColorSelected('startVH');
+        break;
     }
 }
