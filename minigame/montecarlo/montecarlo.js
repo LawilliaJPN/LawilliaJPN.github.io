@@ -50,6 +50,7 @@ function start() {
         field.push(cards[fieldNum]);
     }
 
+    selected.first = -1;
     game.isRunning = false;
 
     draw();
@@ -68,15 +69,7 @@ function select(e) {
     if (selected.first != -1) {
         selected.second = num;
 
-        if (((selected.first - 1) == selected.second) ||
-            ((selected.first + 1) == selected.second) ||
-            ((selected.first - card.numX) == selected.second) ||
-            ((selected.first + card.numX) == selected.second) ||
-            ((selected.first + card.numX - 1) == selected.second) || 
-            ((selected.first + card.numX + 1) == selected.second) || 
-            ((selected.first - card.numX - 1) == selected.second) || 
-            ((selected.first - card.numX + 1) == selected.second)) {
-
+        if (canSelect()) {
             if (field[selected.first] == field[selected.second]) {
                 field.splice(selected.first, 1);
                 if (selected.first < selected.second) selected.second -= 1;
@@ -104,6 +97,27 @@ function select(e) {
     }
     
     draw();
+}
+
+/* カード同士の位置関係の判定 */
+function canSelect() {
+    if ((selected.first % 5 == 0) && (selected.second % 5 == 4) ||
+        (selected.first % 5 == 4) && (selected.second % 5 == 0)) {
+        // 左端と右端を選んだ場合、消せない
+        return false;
+    } else if (((selected.first - 1) == selected.second) || 
+            ((selected.first + 1) == selected.second) ||
+            ((selected.first - card.numX) == selected.second) ||
+            ((selected.first + card.numX) == selected.second) ||
+            ((selected.first + card.numX - 1) == selected.second) || 
+            ((selected.first + card.numX + 1) == selected.second) || 
+            ((selected.first - card.numX - 1) == selected.second) || 
+            ((selected.first - card.numX + 1) == selected.second)) {
+        // 縦横斜めで隣接する場合は、消せる
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /*
@@ -165,9 +179,12 @@ function drawGame() {
                 if ((i == selected.first) || (i == selected.second)) {
                     ctx.fillStyle = '#DDD';
                     ctx.fillRect(card.width * x + card.widthS * x, card.height * y + card.heightS * y, card.width, card.height);
-                    ctx.fillStyle = 'black';
+                } else if (field[i] == field[selected.first]) {
+                    ctx.fillStyle = '#FDD';
+                    ctx.fillRect(card.width * x + card.widthS * x, card.height * y + card.heightS * y, card.width, card.height);
                 }
                 
+                ctx.fillStyle = 'black';
                 ctx.rect(card.width * x + card.widthS * x, card.height * y + card.heightS * y, card.width, card.height);
                 ctx.stroke();
                 ctx.fillText(field[y * card.numX + x], card.width * (x + 0.5) + card.widthS * x, card.height * (y + 0.5) + card.heightS * y, card.width);
