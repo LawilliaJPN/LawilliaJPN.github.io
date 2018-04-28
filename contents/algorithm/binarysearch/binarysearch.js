@@ -3,7 +3,11 @@ function btnUpdate() {
     var strNum = document.getElementById('inputNum').value;
 
     // 入力された値の例外処理
-    if((strLen.match(/[^0-9]+/)) || (strLen.match(/[^0-9]+/))) {
+    if ((strLen == '') || (strLen == '')) {
+        document.getElementById('outputMsg').innerHTML = '入力をしてから更新ボタンを押してください。';
+        document.getElementById('outputMsg').className = 'caution';
+        return;
+    } else if ((strLen.match(/[^0-9]+/)) || (strLen.match(/[^0-9]+/))) {
         document.getElementById('outputMsg').innerHTML = '半角数字のみで入力してください。';
         document.getElementById('outputMsg').className = 'caution';
         return;
