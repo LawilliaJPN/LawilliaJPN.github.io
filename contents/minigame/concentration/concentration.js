@@ -7,7 +7,8 @@ var cards = [20];
 // 各カードが既にそろっているか
 var isPair = [20];
 // 既にその数字が出ているか
-var isAlready = [10];
+var isAlreadyCard= [20];
+var isAlreadyNumber= [10];
 var isAlreadyNow = false;
 // 表のカード
 var front = {first:-1, second:-1};
@@ -61,7 +62,9 @@ function start() {
 
     isPair = [false, false, false, false, false, false, false, false, false, false,
             false, false, false, false, false, false, false, false, false, false];
-    isAlready = [false, false, false, false, false, false, false, false, false, false];
+    isAlreadyCard = [false, false, false, false, false, false, false, false, false, false,
+            false, false, false, false, false, false, false, false, false, false];
+    isAlreadyNumber = [false, false, false, false, false, false, false, false, false, false];
 
     game.isRunning = false;
     game.timer = 0;
@@ -102,19 +105,26 @@ function select(e) {
                 if (game.pair == 0) clear();
             } else {
                 if (isAlreadyNow) {
+                    console.log('miss');
+                    game.missCount++;
+                } else if (isAlreadyCard[front.second]) {
+                    console.log('miss');
                     game.missCount++;
                 }
             }
 
-            isAlready[cards[front.second]] = true;
+            isAlreadyNumber[cards[front.second]] = true;
+            isAlreadyCard[front.second] = true;
             front.first = front.second = -1;
         } else {
             front.first = num;
             draw();
-            if (isAlready[cards[front.first]]) {
+
+            isAlreadyCard[front.first] = true;
+            if (isAlreadyNumber[cards[front.first]]) {
                 isAlreadyNow = true;
             } else {
-                isAlready[cards[front.first]] = true;
+                isAlreadyNumber[cards[front.first]] = true;
                 isAlreadyNow = false;
             }
         }
