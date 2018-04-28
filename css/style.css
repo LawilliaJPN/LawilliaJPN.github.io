@@ -32,6 +32,11 @@ h2 {
 }
 
 /* リストのデザインの変更 */
+li {
+    text-align: left;
+}
+
+/* 現在使用していない
 .contents ul li {
     font-size:150%;
     color: #690;
@@ -47,6 +52,7 @@ h2 {
     font-size:70%;
     color: #000;
 }
+*/
 
 /* テーブルのデザインの変更 */
 table {
