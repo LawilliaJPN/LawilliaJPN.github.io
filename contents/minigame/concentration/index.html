@@ -23,14 +23,24 @@
 				<h2>Concentration／神経衰弱</h2>
 				<p id="game"></p>
 				<p id="button">
-					<button id="start" onclick="btnStart();">RETRY(Press Any Key)</button>
+					<button id="startNum" onclick="btnStart(0);">数字</button>
+					<button id="startBW" onclick="btnStart(1);">白黒</button>
 				</p>
 
                 <h2>使用方法</h2>
                 <p>
-					0～9の10ペアで行う、神経衰弱です。<br />
+					神経衰弱です。<br />
+					2枚選んで同じカードならば消えます。<br />
+					すべて消したらクリアです。
+				</p>
+				<table>
+					<caption>モードについて</caption>
+					<tr><th>数字</th><td>0～9の数字を揃えます。</td></tr>
+					<tr><th>白黒</th><td>白黒の濃さを揃えます。</td></tr>
+				</table>
+				<p>
 					1枚目を選んだ時点でスタートします。<br />
-					クリア後は下のRETRYボタンを押すことでリトライが可能です。
+					モード切替ボタンを押すとリトライできます。
 				</p>
 				<table>
 					<caption>スコアについて</caption>
@@ -45,6 +55,7 @@
 				<h2>更新履歴</h2>
 				<table>
 					<tr><th>日付</th><th>更新内容</th></tr>
+					<tr><td>2018-04-28</td><td>白黒モード実装</td></tr>
 					<tr><td rowspan="2">2018-03-28</td><td>不具合修正<br />同じカードを選択できた問題</td></tr>
 					<tr><td>使用方法の追記</td></tr>
 					<tr><td>2018-03-27</td><td>ページ作成</td></tr>
