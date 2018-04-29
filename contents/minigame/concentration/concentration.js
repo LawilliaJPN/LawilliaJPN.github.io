@@ -76,7 +76,7 @@ function start() {
 }
 
 function clear() {
-    game.isRunning == false;
+    game.isRunning = false;
     draw();
 }
 
