@@ -1,5 +1,10 @@
 /* ページを開いたとき */
 window.onload = function() {
+    updateEachPages();
+}
+
+/* ページを開いたときに呼び出す */
+function updateEachPages() {
     updateH1Title();
     updateCopyright();
 }

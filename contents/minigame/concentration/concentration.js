@@ -21,6 +21,9 @@ setInterval(concentration, 10);
 
 /* ページを開いたとき */
 window.onload = function() {
+    // 各ページ共通の更新
+    updateEachPages();
+    
     updateCanvas();
     start();
 }
