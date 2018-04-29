@@ -63,9 +63,10 @@ table tr th, table tr td {
     padding: 0 10px;
     border: 1px solid #DDD;
 }
+/* 現在なし
 table tr td{
-    /* なし */
 }
+*/
 table tr th {
     font-weight: bold;
     background-color: #DDD;
@@ -81,4 +82,22 @@ table tr th {
 
 .caution:before {
     content: '※';
+}
+
+/* タイトルロゴのようなもの */
+#PCW {
+    font-family: cursive;
+    color: #FFF;
+    background: #000;
+    text-align: center;
+    padding: 0.0em 0.5em 0.0em 0.6em;
+    margin: 0.0em 0.5em 0.0em 0.5em;
+    border-radius: 50%;
+}
+
+/* 権利表記 */
+#copyright {
+    font-family: 'arial black';
+    text-align: center;
+    border-top: solid 3px #DDD;
 }
