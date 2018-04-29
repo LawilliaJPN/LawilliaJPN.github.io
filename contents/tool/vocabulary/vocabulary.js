@@ -150,5 +150,8 @@ function btnList() {
 /* イベント */
 // ページを開いたとき
 window.onload = function() {
+    // 各ページ共通の更新
+    updateEachPages();
+    
     resetMsg();
 }
