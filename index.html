@@ -1,114 +1,126 @@
 <!DOCTYPE html>
 <html lang="ja">
-	<head>
-		<!-- 文字コード -->
-		<meta charset="utf-8">
+    <head>
+        <!-- 文字コード -->
+        <meta charset="utf-8">
 
-		<!-- デバイスに幅を合わせる -->
-		<meta name="viewport" content="width=device-width">
+        <!-- Internet Explorerの互換表示モードをオフにする-->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<!-- CSSの適用 -->
-		<link rel="stylesheet" href="css/style.css">
+        <!-- デバイスに幅を合わせる -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-		<!-- ページタイトル -->
-		<title>Lawillia - Web制作の練習</title>
-	</head>
+        <!-- Bootstrap 4の適用 -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
+        <!-- ページタイトル -->
+        <title>PCW Web製作の練習</title>
+    </head>
 	<body>
-		<div class="main">
-			<div class="contents">
-				<h1 id="h1title"></h1>
-				<h2>このページについて</h2>
-				<p>
-					GitHub Pagesで公開しているページです。<br />
-					簡単なWeb制作の練習に使用していきます。
-				</p>
-				<h2>ページ一覧</h2>
-				<table>
-					<caption>
-						Tools／ツール
-					</caption>
-					<tr>
-						<th>リンク</th>
-						<th>概要</th>
-					</tr>
-					<tr>
-						<td><a href="https://lawilliajpn.github.io/contents/tool/calculator/">Calculator</a></td>
-						<td>電卓</td>
-					</tr>
-					<tr>
-						<td><a href="https://lawilliajpn.github.io/contents/tool/chord/">Chord</a></td>
-						<td>和音再生</td>
-					</tr>
-					<tr>
-						<td><a href="https://lawilliajpn.github.io/contents/tool/counter/">Counter</a></td>
-						<td>カウンタ</td>
-					</tr>
-					<tr>
-						<td><a href="https://lawilliajpn.github.io/contents/tool/stopwatch/">Stopwatch</a></td>
-						<td>ストップウォッチ</td>
-					</tr>
-					<tr>
-						<td><a href="https://lawilliajpn.github.io/contents/tool/vocabulary/">Vocabulary Test</a></td>
-						<td>単語テスト</td>
-					</tr>
-				</table>
-				<table>
-					<caption>
-						Mini Games／ミニゲーム
-					</caption>
-					<tr>
-						<th>リンク</th>
-						<th>概要</th>
-					</tr>
-					<tr>
-						<td><a href="https://lawilliajpn.github.io/contents/minigame/concentration/">Concentration</a></td>
-						<td>神経衰弱</td>
-					</tr>
-					<tr>
-						<td><a href="https://lawilliajpn.github.io/contents/minigame/montecarlo/">Monte Carlo</a></td>
-						<td>モンテカルロ</td>
-					</tr>
-				</table>
-				<table>
-					<caption>
-						Websites／ウェブサイト
-					</caption>
-					<tr>
-						<th>リンク</th>
-						<th>概要</th>
-					</tr>
-					<tr>
-						<td><a href="https://lawilliajpn.github.io/contents/website/bootstrap4/">Bootstrap 4</a></td>
-						<td>Bootstrap 4を使用したWeb製作の練習</td>
-					</tr>
-				</table>
-				<p>
-					<a href="https://lawilliajpn.github.io/contents/">⇒他</a>
-				</p>
-				<h2>関連ページ</h2>
-				<table>
-					<tr>
-						<th>リンク</th>
-						<th>概要</th>
-					</tr>
-					<tr>
-						<td><a href="https://github.com/LawilliaJPN/LawilliaJPN.github.io">GitHub</a></td>
-						<td>このページのGitHubリポジトリ</td>
-					</tr>
-					<tr>
-						<td><a href="https://lawilliajpn.github.io/profile/">Profile</a></td>
-						<td>外部リンクなど</td>
-					</tr>
-				</table>
-			</div>
-		</div>
+        <header class="container">
+            <nav class="navbar navbar-expand-sm navbar-light">
+                <a class="navbar-brand" href="https://lawilliajpn.github.io">PCW Web製作の練習</a>
 
-		<!-- JavaScriptの適用 -->
-		<script type="text/javascript" src="./js/main.js"></script>
-	</body>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="menu" class="collapse navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item mr-1">
+                            <a class="nav-link" href="#minigames">Mini Games</a>
+                        </li>
+                        <li class="nav-item mr-1">
+                            <a class="nav-link" href="#tools">Tools</a>
+                        </li>
+                        <li class="nav-item mr-1">
+                            <a class="nav-link" href="https://lawilliajpn.github.io/profile/">Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
-	<footer>
-		<p id="copyright"></p>
-	</footer>
+        <section id="" class="py-5 border-top bg-light">
+            <div class="container">
+                <div class="center-block text-center">
+                    <h1>PCW Web製作の練習</h1>
+                    <p>
+			Lawillia(ラウィ)です。<br />
+                        簡単なWeb制作の練習をしていきます。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="minigames" class="py-5">
+            <h3 class="mb-3 text-center">Mini Games</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-3">
+			<p class="m-1">神経衰弱</p>
+                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/minigame/concentration/">
+                            Concentration
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-3">
+			<p class="m-1">モンテカルロ</p>
+                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/minigame/montecarlo/">
+                            Monte Carlo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools" class="py-5">
+            <h3 class="mb-3 text-center">Tools</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-3">
+			<p class="m-1">電卓</p>
+                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/calculator/">
+                            Calculator
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-3">
+			<p class="m-1">和音再生</p>
+                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/chord/">
+                            Chord
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-3">
+			<p class="m-1">カウンタ</p>
+                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/counter/">
+                            Counter
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-3">
+			<p class="m-1">ストップウォッチ</p>
+                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/stopwatch/">
+                            Stopwatch
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-3">
+			<p class="m-1">単語テスト</p>
+                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/vocabulary/">
+                            Vocabulary Test
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p class="text-right text-muted">
+                <small>Copyright c 2017-2018 Lawillia All Rights Reserved.</small>
+            </p>
+        </footer>
+
+        <!-- JavaScriptの適用(jQuery) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- JavaScriptの適用(Popper.js) -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <!-- JavaScriptの適用(Bootstrap JS) -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    </body>
 </html>
