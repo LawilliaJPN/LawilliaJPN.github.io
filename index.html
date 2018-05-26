@@ -17,28 +17,7 @@
         <title>PCW Web制作の練習</title>
     </head>
 	<body>
-        <header class="container">
-            <nav class="navbar navbar-expand-sm navbar-light">
-                <a class="navbar-brand" href="https://lawilliajpn.github.io"><span class="mr-2">PCW</span>Web制作の練習</a>
-
-                <button class="navbar-toggler" data-toggle="collapse" data-target="#menu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div id="menu" class="collapse navbar-collapse">
-                    <ul class="navbar-nav">
-                        <li class="nav-item mr-1">
-                            <a class="nav-link" href="#minigames">Mini Games</a>
-                        </li>
-                        <li class="nav-item mr-1">
-                            <a class="nav-link" href="#tools">Tools</a>
-                        </li>
-                        <li class="nav-item mr-1">
-                            <a class="nav-link" href="https://lawilliajpn.github.io/profile/">Profile</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+        <header id="common-header" class="container"></header>
 
         <section id="top" class="py-5 border-top bg-light">
             <div class="container">
@@ -110,17 +89,16 @@
             </div>
         </section>
 
-        <footer>
-            <p class="text-right text-muted">
-                <small>Copyright c 2017-2018 Lawillia All Rights Reserved.</small>
-            </p>
-        </footer>
+        <footer id="common-footer"></footer>
 
-        <!-- JavaScriptの適用(jQuery) -->
+        <!-- jQueryの適用 -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <!-- JavaScriptの適用(Popper.js) -->
+        <!-- Popper.jsの適用 -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-        <!-- JavaScriptの適用(Bootstrap JS) -->
+        <!-- Bootstrap JSの適用 -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+	<!-- JavaScriptの適用 -->
+	<script src="./js/script.js"></script>
     </body>
 </html>
