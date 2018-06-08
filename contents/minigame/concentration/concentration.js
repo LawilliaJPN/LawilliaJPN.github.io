@@ -21,9 +21,6 @@ setInterval(concentration, 10);
 
 /* ページを開いたとき */
 window.onload = function() {
-    // 各ページ共通の更新
-    updateEachPages();
-    
     updateCanvas();
     start();
 }
@@ -37,7 +34,7 @@ window.onresize = function() {
 /* ボタン */
 function btnStart(mode) {
     game.mode = mode;
-    setButtonColors();
+    toggleButtonDisplay();
     start();
 }
 
@@ -84,10 +81,11 @@ function clear() {
 }
 
 function select(e) {
-    var eventX = (e.clientX - canvas.offsetLeft) % (card.width + card.widthS);
-    var eventY = (e.clientY - canvas.offsetTop) % (card.height + card.heightS);
-    var x = Math.floor((e.clientX - canvas.offsetLeft) / (card.width + card.widthS));
-    var y = Math.floor((e.clientY - canvas.offsetTop) / (card.height + card.heightS));
+    var rect = e.target.getBoundingClientRect();
+    var eventX = (e.clientX - Math.floor(rect.left)) % (card.width + card.widthS);
+    var eventY = (e.clientY - Math.floor(rect.top)) % (card.height + card.heightS);
+    var x = Math.floor((e.clientX - Math.floor(rect.left)) / (card.width + card.widthS));
+    var y = Math.floor((e.clientY - Math.floor(rect.top)) / (card.height + card.heightS));
     var num = card.numX * y + x;
 
     if ((eventX <= card.width) && (eventY <= card.height) && (isPair[num] == false)) {
@@ -145,8 +143,8 @@ function updateCanvas() {
 
 /* Canvasサイズの反映 */
 function updateSize() {
-	game.width = document.body.clientWidth;
-	game.height = window.innerHeight /2;
+    game.width = document.getElementById('game').clientWidth;
+    game.height = window.innerHeight /2;
 }
 
 /* Canvas要素を取得して行う処理 */
@@ -225,22 +223,38 @@ function drawScore() {
     ctx.textBaseline = 'top';
 
     ctx.fillText('CLEAR', game.width / 2, card.height * 0, game.width);
-    ctx.fillText('時間：' + (Math.floor(game.timer / 6000)) + '分' + (game.timer % 6000 / 100) + '秒', game.width / 2, card.height * 2, game.width);
-    ctx.fillText('回数：' + game.count + '回', game.width / 2, card.height * 3, game.width);
-    ctx.fillText('ミス：' + game.missCount + '回', game.width / 2, card.height * 4, game.width);
+    ctx.fillText('時間：' + (Math.floor(game.timer / 6000)) + '分' + (game.timer % 6000 / 100) + '秒', game.width / 2, card.height * 1.5, game.width);
+    ctx.fillText('回数：' + game.count + '回', game.width / 2, card.height * 2.5, game.width);
+    ctx.fillText('ミス：' + game.missCount + '回', game.width / 2, card.height * 3.5, game.width);
 }
 
-/* ボタンのデザインの変更 */
-function setButtonColors() {
-    resetButtonColor('startNum');
-    resetButtonColor('startBW');
+/* ボタンの見た目の切り替え */
+function toggleButtonDisplay() {
+    var startNum = document.getElementById('startNum');
+    var startBW = document.getElementById('startBW');
 
     switch(game.mode) {
     case 0:
-        setButtonColorSelected('startNum');
+        startNum.classList.add('bg-info');
+        startNum.classList.add('text-light');
+        startNum.classList.remove('btn-light');
+        startNum.classList.remove('btn-outline-info');
+
+        startBW.classList.remove('bg-info');
+        startBW.classList.remove('text-light');
+        startBW.classList.add('btn-light');
+        startBW.classList.add('btn-outline-info');
         break;
     case 1:
-        setButtonColorSelected('startBW');
+        startBW.classList.add('bg-info');
+        startBW.classList.add('text-light');
+        startBW.classList.remove('btn-light');
+        startBW.classList.remove('btn-outline-info');
+
+        startNum.classList.remove('bg-info');
+        startNum.classList.remove('text-light');
+        startNum.classList.add('btn-light');
+        startNum.classList.add('btn-outline-info');
         break;
     }
 }

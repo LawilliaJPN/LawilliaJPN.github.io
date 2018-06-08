@@ -7,74 +7,107 @@
 		<!-- デバイスに幅を合わせる -->
 		<meta name="viewport" content="width=device-width">
 
-		<!-- CSSの適用 -->
-		<link rel="stylesheet" href="../../../css/style.css">
-		<link rel="stylesheet" href="../../../css/minigame.css">
-		<link rel="stylesheet" href="concentration.css">
+		<!-- Bootstrap 4の適用 -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
 		<!-- ページタイトル -->
 		<title>Concentration／神経衰弱</title>
 	</head>
 
 	<body>
-		<div class="main">
-			<div class="contents">
-				<h1 id="h1title"></h1>
-				<h2>Concentration／神経衰弱</h2>
-				<p id="game"></p>
-				<p id="button">
-					<button id="startNum" onclick="btnStart(0);">数字</button>
-					<button id="startBW" onclick="btnStart(1);">白黒</button>
-				</p>
+		<header id="common-header" class="container border-bottom border-secondary"></header>
 
-                <h2>使用方法</h2>
-                <p>
-					神経衰弱です。<br />
-					2枚を選んで、それらが同じカードならば消えます。<br />
-					すべてのカードを消したらクリアです。
-				</p>
-				<table>
-					<caption>モードについて</caption>
-					<tr><th>数字</th><td>0～9の数字を揃えます。</td></tr>
-					<tr><th>白黒</th><td>白黒の濃さを揃えます。</td></tr>
-				</table>
-				<p>
-					1枚目を選んだ時点でスタートします。<br />
-					モード切替ボタンを押すとリトライできます。
-				</p>
-				<table>
-					<caption>スコアについて</caption>
-					<tr><th>時間</th><td>1枚目をめくってから、最後のペアを揃えるまでの時間です。<br /><div class="caution">一部の環境で正確に計測できない場合があります。</div></td></tr>
-					<tr><th>回数</th><td>2枚目をめくった回数です。</td></tr>
-					<tr><th>ミス</th><td>既知の組み合わせを揃え損ねた回数です。</td></tr>
-				</table>
-				<p id="share">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="神経衰弱PCW">Tweet</a>
-				</p>
+		<section class="container py-5">
+			<div class="row">
+				<div class="col-lg-8 mb-5">
+					<div class="row mb-5">
+						<div class="col-6">
+							<button id="startNum" class="btn text-light bg-info btn-block" onclick="btnStart(0);">
+								数字
+							</button>
+						</div>
+						<div class="col-6">
+							<button id="startBW" class="btn btn-light btn-outline-info btn-block" onclick="btnStart(1);">
+								白黒
+							</button>
+						</div>
+					</div>
+					<div id="game"></div>
+				</div>
 
-				<h2>更新履歴</h2>
-				<table>
-					<tr><th>日付</th><th>更新内容</th></tr>
-					<tr><td>2018-04-29</td><td>不具合修正<br />クリア画面でクリアタイムが増える問題</td></tr>
-					<tr><td rowspan="2">2018-04-28</td><td>不具合修正<br />ミス回数のカウント漏れ</td></tr>
-					<tr><td>白黒モード実装</td></tr>
-					<tr><td rowspan="2">2018-03-28</td><td>不具合修正<br />同じカードを選択できた問題</td></tr>
-					<tr><td>使用方法の追記</td></tr>
-					<tr><td>2018-03-27</td><td>ページ作成</td></tr>
-				</table>
+				<div class="col-lg-4 mb-5">
+					<ul class="nav nav-tabs mb-3">
+						<li class="nav-item">
+							<a class="nav-link active" href="#howtoplay" data-toggle="tab">遊び方</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#updates" data-toggle="tab">更新履歴</a>
+						</li>
+					</ul>
+
+					<div class="tab-content">
+						<div id="howtoplay" class="tab-pane active">
+							<h2 class="text-center">遊び方</h2>
+							<p class="mb-3">
+								神経衰弱です。<br />
+								2枚を選んで、それらが同じカードならば消えます。<br />
+								すべてのカードを消したらクリアです。
+							</p>
+							<table class="table mb-3">
+								<tr><th scope="col" colspan="2">モードについて</th></tr>
+								<tr><th scope="row">数字</th><td>0～9の数字を揃えます。</td></tr>
+								<tr><th scope="row">白黒</th><td>白黒の濃さを揃えます。</td></tr>
+							</table>
+							<p class="mb-3">
+								1枚目を選んだ時点でスタートします。<br />
+								モード切替ボタンを押すとリトライできます。
+							</p>
+							<table class="table mb-3">
+								<tr><th scope="col" colspan="2">スコアについて</th></tr>
+								<tr><th scope="row">時間</th><td>1枚目をめくってから、最後のペアを揃えるまでの時間です。<br />一部の環境で正確に計測できない場合があります。</td></tr>
+								<tr><th scope="row">回数</th><td>2枚目をめくった回数です。</td></tr>
+								<tr><th scope="row">ミス</th><td>既知の組み合わせを揃え損ねた回数です。</td></tr>
+							</table>
+						</div>
+
+						<div id="updates" class="tab-pane">
+							<h2 class="text-center">更新履歴</h2>
+							<table class="table mb-3">
+								<tr><th scope="col">日付</th><th scope="col">更新内容</th></tr>
+								<tr><td>2018-06^09</td><td>ページデザインをBootstrap 4に変更</td></tr>
+								<tr><td>2018-04-29</td><td>不具合修正<br />クリア画面でクリアタイムが増える問題</td></tr>
+								<tr><td rowspan="2">2018-04-28</td><td>不具合修正<br />ミス回数のカウント漏れ</td></tr>
+								<tr><td>白黒モード実装</td></tr>
+								<tr><td rowspan="2">2018-03-28</td><td>不具合修正<br />同じカードを選択できた問題</td></tr>
+								<tr><td>使用方法の追記</td></tr>
+								<tr><td>2018-03-27</td><td>ページ作成</td></tr>
+							</table>
+						</div>
+
+						<p id="share">
+							<a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="神経衰弱PCW">Tweet</a>
+						</p>
+					</div>
+				</div>
 			</div>
-		</div>
+		</section>
+
+		<footer id="common-footer"></footer>
+
+		<!-- jQueryの適用 -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<!-- Popper.jsの適用 -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+		<!-- Bootstrap JSの適用 -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
 		<!-- JavaScriptの適用 -->
-		<script type="text/javascript" src="../../../js/main.js"></script>
+		<script type="text/javascript" src="../../../js/script.js"></script>
 		<script type="text/javascript" src="../../../js/minigame.js"></script>
 		<script type="text/javascript" src="../../../js/cardgame.js"></script>
 		<script type="text/javascript" src="concentration.js"></script>
+
 		<!-- Twitter共有 -->
 		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 	</body>
-	
-	<footer>
-		<p id="copyright"></p>
-	</footer>
 </html>
