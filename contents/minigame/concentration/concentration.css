@@ -1,9 +1,0 @@
-button {
-    width: 40%;
-    height: 4.0em;
-}
-
-/* 初期選択 */
-#startNum {
-    background: linear-gradient(45deg, #000 10%, #088 90%);
-}

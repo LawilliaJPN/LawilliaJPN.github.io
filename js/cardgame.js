@@ -1,8 +1,8 @@
 /* カードをシャッフル */
-function shuffleCards(cards, num) {
-    var cardA, cardB, temp;
+const shuffleCards = (cards, num) => {
+    let cardA, cardB, temp;
 
-    for (var i = 0; i < num; i++) {
+    for (let i = 0; i < num; i++) {
         cardA = Math.floor(Math.random() * cards.length);
         cardB = Math.floor(Math.random() * cards.length);
         
