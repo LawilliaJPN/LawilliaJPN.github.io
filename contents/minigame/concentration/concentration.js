@@ -3,7 +3,6 @@
 /*
  * グローバル変数
  */
-
 let canvas, ctx;
 
 /* ゲーム全体 */
@@ -167,7 +166,7 @@ const updateSize = () => {
 
 /* Canvas要素を取得して行う処理 */
 const getCanvas = () => {
-    document.getElementById('game').innerHTML = '<canvas id="canvas" width="' + game.width + '" height="' + game.height + '">';
+    document.getElementById('game').innerHTML = `<canvas id="canvas" width="${game.width}" height="${game.height}">`;
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
 
