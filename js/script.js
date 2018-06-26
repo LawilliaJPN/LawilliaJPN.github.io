@@ -59,38 +59,36 @@ const updateLinkToMiniGames = () => {
 const updateLinkToTools = () => {
 	$('#linktotools').html(`
 		<h3 class="mb-3 text-center">Tools</h3>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-6 mb-3">
-		<p class="m-1">電卓</p>
-					<a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/calculator/">
-						Calculator
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 mb-3">
-		<p class="m-1">和音再生</p>
-					<a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/chord/">
-						Chord
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 mb-3">
-		<p class="m-1">カウンタ</p>
-					<a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/counter/">
-						Counter
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 mb-3">
-		<p class="m-1">ストップウォッチ</p>
-					<a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/stopwatch/">
-						Stopwatch
-					</a>
-				</div>
-				<div class="col-lg-4 col-md-6 mb-3">
-		<p class="m-1">単語テスト</p>
-					<a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/vocabulary/">
-						Vocabulary Test
-					</a>
-				</div>
+		<div class="row">
+			<div class="col-lg-4 col-md-6 mb-3">
+	<p class="m-1">電卓</p>
+				<a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/calculator/">
+					Calculator
+				</a>
+			</div>
+			<div class="col-lg-4 col-md-6 mb-3">
+	<p class="m-1">和音再生</p>
+				<a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/chord/">
+					Chord
+				</a>
+			</div>
+			<div class="col-lg-4 col-md-6 mb-3">
+	<p class="m-1">カウンタ</p>
+				<a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/counter/">
+					Counter
+				</a>
+			</div>
+			<div class="col-lg-4 col-md-6 mb-3">
+	<p class="m-1">ストップウォッチ</p>
+				<a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/stopwatch/">
+					Stopwatch
+				</a>
+			</div>
+			<div class="col-lg-4 col-md-6 mb-3">
+	<p class="m-1">単語テスト</p>
+				<a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/vocabulary/">
+					Vocabulary Test
+				</a>
 			</div>
 		</div>
 	`);
