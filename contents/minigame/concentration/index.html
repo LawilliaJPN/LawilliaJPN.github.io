@@ -58,24 +58,24 @@
 
 					<div class="tab-content">
 						<div id="howtoplay" class="tab-pane active">
-							<h2 class="text-center">遊び方</h2>
+							<h2 class="text-center mb-3">遊び方</h2>
 							<p class="mb-3">
-								神経衰弱です。
-								2枚を選んで、それらが同じカードならば消えます。
+								神経衰弱です。<br class="d-none d-md-inline d-lg-none" />
+								2枚を選んで、それらが同じカードならば消えます。<br class="d-none d-md-inline d-lg-none" />
 								すべてのカードを消したらクリアです。
 							</p>
-							<table class="table mb-3">
+							<table class="table mb-4">
 								<tr><th scope="col" colspan="2">モードについて</th></tr>
 								<tr><th scope="row">数字</th><td>0～9の数字を揃えます。</td></tr>
 								<tr><th scope="row">白黒</th><td>白黒の濃さを揃えます。</td></tr>
 							</table>
 							<p class="mb-3">
-								1枚目を選んだ時点でスタートします。
+								1枚目を選んだ時点でスタートします。<br class="d-none d-md-inline d-lg-none" />
 								モード切替ボタンを押すとリトライできます。
 							</p>
-							<table class="table mb-3">
+							<table class="table mb-4">
 								<tr><th scope="col" colspan="2">スコアについて</th></tr>
-								<tr><th scope="row">時間</th><td>1枚目をめくってから、最後のペアを揃えるまでの時間です。ただし、一部の環境では正確に計測できない場合があります。</td></tr>
+								<tr><th scope="row">時間</th><td>1枚目をめくってから、最後のペアを揃えるまでの時間です。<br class="d-none d-md-inline d-lg-none" />ただし、一部の環境では正確に計測できない場合があります。</td></tr>
 								<tr><th scope="row">回数</th><td>2枚目をめくった回数です。</td></tr>
 								<tr><th scope="row">ミス</th><td>既知の組み合わせを揃え損ねた回数です。</td></tr>
 							</table>
@@ -83,10 +83,11 @@
 
 						<div id="updates" class="tab-pane">
 							<div class="mb-5">
-								<h2 class="text-center">更新履歴</h2>
+								<h2 class="text-center mb-3">更新履歴</h2>
 								<table class="table mb-3">
 									<tr><th scope="col">日付</th><th scope="col">更新内容</th></tr>
-									<tr><td>2018-06-26</td><td>キー操作 実装</td></tr>
+									<tr><td>2018-06-27</td><td>設定 スライド 実装</td></tr>
+									<tr><td>2018-06-26</td><td>設定 キー操作 実装</td></tr>
 									<tr><td>2018-06-09</td><td>ページデザインをBootstrap 4に変更</td></tr>
 									<tr><td>2018-04-29</td><td>不具合修正<ul><li>クリア画面でクリアタイムが増える問題</li></ul></td></tr>
 									<tr><td rowspan="2">2018-04-28</td><td>不具合修正<ul><li>ミス回数のカウント漏れ</li></ul></td></tr>
@@ -99,8 +100,8 @@
 						</div>
 
 						<div id="option" class="tab-pane">
-							<h2 class="text-center">設定</h2>
-							<div class="row">
+							<h2 class="text-center mb-3">設定</h2>
+							<div class="row mb-3">
 								<p class="col-6 text-center">キー操作</p>
 								<div class="col-6">
 									<button id="btnOptionKey" class="btn btn-light btn-outline-info btn-block" onclick="btnOptionKey();">
@@ -108,6 +109,21 @@
 									</button>
 								</div>
 							</div>
+							<div class="row mb-3">
+								<p class="col-6 text-center">スライド</p>
+								<div class="col-6">
+									<button id="btnOptionSlide" class="btn btn-light btn-outline-info btn-block" onclick="btnOptionSlide();">
+										オフ
+									</button>
+								</div>
+							</div>
+							<table class="table mb-4">
+								<tr><th scope="row">キー操作</th><td>オンにすると、キーボードによる操作が可能になります。<br class="d-none d-md-inline d-lg-none" />各カードの左上に対応するキーが表示されます。</td></tr>
+								<tr><th scope="row">スライド</th><td>オンにすると、ペアが揃う度にカードがスライドします。<br class="d-none d-md-inline d-lg-none" />スライドする方向は、上下左右ランダムに決まります。<br class="d-none d-md-inline d-lg-none" />スライド時、端のカードは同じ列の逆側にループします。</td></tr>
+							</table>
+							<p class="text-right">
+								※プレイ中に設定を変えると最初から遊び直しになります。
+							</p>
 						</div>
 
 						<div id="share" class="mb-3">

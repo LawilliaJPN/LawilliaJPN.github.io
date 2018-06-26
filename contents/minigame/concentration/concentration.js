@@ -4,6 +4,7 @@
  * グローバル変数
  */
 let canvas, ctx;
+const debug = false;
 
 /* ゲーム全体 */
 const game = {
@@ -22,7 +23,8 @@ const game = {
 
 /* 設定 */
 const option = {
-    keyControl: false
+    keyControl: false,
+    slide: false
 };
 
 /* スコア関連 */
@@ -48,23 +50,28 @@ const card = {
 /* 各カードの情報 */
 const cards = {
     // 各カードの種類
-    number: [game.numOfCards],
+    number: new Array(game.numOfCards),
     // ペアが揃っているか否か
-    isPaired: [game.numOfCards],
-    // カードか既知の否か
-    isKnownCard: [game.numOfCards],
-    // 種類か既知の否か
-    isKnownNumber: [game.numOfCards / 2],
+    isPaired: new Array(game.numOfCards),
+    // カードが既知か否か
+    isKnownCard: new Array(game.numOfCards),
+    // 種類が既知か否か
+    isKnownNumber: new Array(game.numOfCards / 2),
     // 1枚目として選択中のカードが既知か否か
     isKnownNow: false,
     // 選択中のカード
     selected: [-1, -1]
 };
 
+/* スライド関連 */
+const slide = {
+    display: false,
+    tempDirection: -1
+}
+
 /*
  * ボタン
  */
-
 /* モード切替 */
 const btnStart = mode => {
     game.mode = mode;
@@ -72,6 +79,7 @@ const btnStart = mode => {
     start();
 }
 
+/* キー操作 設定 */
 const btnOptionKey = () => {
     const optionKey = document.getElementById('btnOptionKey');
 
@@ -96,17 +104,40 @@ const btnOptionKey = () => {
         break;
     }
 
-    draw();
+    start();
+}
+
+/* スライド 設定 */
+const btnOptionSlide = () => {
+    const optionSlide = document.getElementById('btnOptionSlide');
+
+    switch(option.slide) {
+    case true:
+        optionSlide.classList.remove('bg-info');
+        optionSlide.classList.remove('text-light');
+        optionSlide.classList.add('btn-light');
+        optionSlide.classList.add('btn-outline-info');
+
+        optionSlide.innerHTML = 'オフ';
+        option.slide = false;
+        break;
+    case false:
+        optionSlide.classList.add('bg-info');
+        optionSlide.classList.add('text-light');
+        optionSlide.classList.remove('btn-light');
+        optionSlide.classList.remove('btn-outline-info');
+
+        optionSlide.innerHTML = 'オン';
+        option.slide = true;
+        break;
+    }
+
+    start();
 }
 
 /*
  * 基本処理
  */
-const concentration = () => {
-    if (!game.isRunning) return;
-    result.timer++;
-}
-
 const start = () => {
     updateCanvas();
 
@@ -115,7 +146,7 @@ const start = () => {
         cards.number[i] = i % 10;
         cards.isPaired[i] = false;
         cards.isKnownCard[i] = false;
-	cards.isKnownNumber[i / 2] = false;
+	    cards.isKnownNumber[i / 2] = false;
     }
     shuffleCards(cards.number, 100);
 
@@ -124,6 +155,9 @@ const start = () => {
     result.timer = 0;
     result.count = result.miss = 0;
     cards.selected[0] = cards.selected[1] = -1;
+    
+    slide.display = false;
+    slide.tempDirection = -1;
 
     draw();
 }
@@ -138,36 +172,54 @@ const select = num => {
     if (cards.isPaired[num] === true) return;
 
     if (cards.selected[0] !== -1) {
+        // 2枚目
+
         if (cards.selected[0] === num) return;
         
         cards.selected[1] = num;
-        draw();
 
         game.isRunning = true;
         result.count++;
 
         if (cards.number[cards.selected[0]] === cards.number[cards.selected[1]]) {
+            // ペアが揃った場合の時
+
             cards.isPaired[cards.selected[0]] = true;
             cards.isPaired[cards.selected[1]] = true;
             
             game.pair--;
             if (game.pair === 0) clear();
+
+            slideCards();
+
         } else {
+            // ペアが揃わなかった時
+
             if (cards.isKnownNow) {
-                console.log('miss');
+                if (debug) {
+                    console.log('miss');
+                }
+                
                 result.miss++;
             } else if (cards.isKnownCard[cards.selected[1]]) {
-                console.log('miss');
+                if (debug) {
+                    console.log('miss');
+                }
                 result.miss++;
             }
         }
 
+        draw();
+
         cards.isKnownNumber[cards.number[cards.selected[1]]] = true;
         cards.isKnownCard[cards.selected[1]] = true;
         cards.selected[0] = cards.selected[1] = -1;
+
+
     } else {
+        // 1枚目
+
         cards.selected[0] = num;
-        draw();
 
         cards.isKnownCard[cards.selected[0]] = true;
         if (cards.isKnownNumber[cards.number[cards.selected[0]]]) {
@@ -176,7 +228,121 @@ const select = num => {
             cards.isKnownNumber[cards.number[cards.selected[0]]] = true;
             cards.isKnownNow = false;
         }
+
+        slide.display = false;
+
+        draw();
     }
+}
+
+// スライド
+const slideCards = () => {
+    if (!option.slide) return;
+
+    // 方向決定
+    let direction = Math.floor(Math.random() * 4);
+    if (slide.tempDirection === direction) direction = (direction + 1) % 4;
+    slide.tempDirection = direction;
+
+    let tempNumber = new Array(game.numOfCards);
+    let tempIsPaired = new Array(game.numOfCards);
+    let tempIsKnownCard = new Array(game.numOfCards);
+
+    for (let i = 0; i < game.numOfCards; i++) {
+        tempNumber[i] = cards.number[i];
+        tempIsPaired[i] = cards.isPaired[i];
+        tempIsKnownCard[i] = cards.isKnownCard[i];
+    }
+    
+    cards.selected = [-1, -1];
+
+    switch (direction) {
+    case 0:
+        // 左
+        if (debug) {
+            console.log('左');
+        }
+
+        for (let i = 0; i < game.numOfCards; i++) {
+            if (i % card.numX === (card.numX - 1)) {
+                // 左端のカードを右端へ
+                cards.number[i] = tempNumber[i - card.numX + 1];
+                cards.isPaired[i] = tempIsPaired[i - card.numX + 1];
+                cards.isKnownCard[i] = tempIsKnownCard[i - card.numX + 1];
+            } else {
+                // 右のカードを左へ
+                cards.number[i] = tempNumber[i + 1];
+                cards.isPaired[i] = tempIsPaired[i + 1];
+                cards.isKnownCard[i] = tempIsKnownCard[i + 1];
+            }
+        }
+        break;
+
+    case 1:
+        // 下
+        if (debug) {
+            console.log('下');
+        }
+        
+        for (let i = 0; i < game.numOfCards; i++) {
+            if (Math.floor(i / card.numX) === 0) {
+                // 下端のカードを上端へ
+                cards.number[i] = tempNumber[i + card.numX * (card.numY - 1)];
+                cards.isPaired[i] = tempIsPaired[i + card.numX * (card.numY - 1)];
+                cards.isKnownCard[i] = tempIsKnownCard[i + card.numX * (card.numY - 1)];
+            } else {
+                // 上のカードを下へ
+                cards.number[i] = tempNumber[i - card.numX];
+                cards.isPaired[i] = tempIsPaired[i - card.numX];
+                cards.isKnownCard[i] = tempIsKnownCard[i - card.numX];
+            }
+        }
+        break;
+
+    case 2:
+        // 右
+        if (debug) {
+            console.log('右');
+        }
+        
+        for (let i = 0; i < game.numOfCards; i++) {
+            if (i % card.numX === 0) {
+                // 右端のカードを左端へ
+                cards.number[i] = tempNumber[i + card.numX - 1];
+                cards.isPaired[i] = tempIsPaired[i + card.numX - 1];
+                cards.isKnownCard[i] = tempIsKnownCard[i + card.numX - 1];
+            } else {
+                // 左のカードを右へ
+                cards.number[i] = tempNumber[i - 1];
+                cards.isPaired[i] = tempIsPaired[i - 1];
+                cards.isKnownCard[i] = tempIsKnownCard[i - 1];
+            }
+        }
+        break;
+
+    case 3:
+        // 上
+        if (debug) {
+            console.log('上');
+        }
+
+        for (let i = 0; i < game.numOfCards; i++) {
+            if (Math.floor(i / card.numX) === (card.numY - 1)) {
+                // 上端のカードを下端へ
+                cards.number[i] = tempNumber[i - card.numX * (card.numY - 1)];
+                cards.isPaired[i] = tempIsPaired[i - card.numX * (card.numY - 1)];
+                cards.isKnownCard[i] = tempIsKnownCard[i - card.numX * (card.numY - 1)];
+            } else {
+                // 下のカードを上へ
+                cards.number[i] = tempNumber[i + card.numX];
+                cards.isPaired[i] = tempIsPaired[i + card.numX];
+                cards.isKnownCard[i] = tempIsKnownCard[i + card.numX];
+            }
+        }
+        break;
+    }
+
+    slide.display = true;
 }
 
 /*
@@ -241,6 +407,32 @@ const drawGame = () => {
     ctx.textBaseline = 'middle';
 
     let i = 0;
+
+    for (let y = 0; y < card.numY; y++){
+        for (let x = 0; x < card.numX; x++){
+            if (cards.isPaired[i]) {
+                // ペアが揃っているカードの描画
+                ctx.fillRect(card.width * x + card.widthS * x, card.height * y + card.heightS * y, card.width, card.height);
+            }
+            
+            // カードの外枠の描画
+            ctx.rect(card.width * x + card.widthS * x, card.height * y + card.heightS * y, card.width, card.height);
+            ctx.stroke();
+            i++;
+        }
+    }
+
+    if (slide.display) {
+        // 矢印の描画
+        ctx.fillStyle = 'gray';
+        ctx.font = '256px serif';
+        ctx.fillText(getSlideDirection(), game.width / 2, game.height / 2, game.width);
+        ctx.fillStyle = 'black';
+        ctx.font = '48px serif';
+    }
+
+    i = 0;
+
     for (let y = 0; y < card.numY; y++){
         for (let x = 0; x < card.numX; x++){
             if (!cards.isPaired[i]) {
@@ -265,14 +457,15 @@ const drawGame = () => {
                     ctx.fillText(getKeyFromCard(y * card.numX + x), card.width * (x + 0.2) + card.widthS * x, card.height * (y + 0.2) + card.heightS * y);
                     ctx.font = '48px serif';
                 }
-                
-                // カードの外枠の描画
-                ctx.rect(card.width * x + card.widthS * x, card.height * y + card.heightS * y, card.width, card.height);
-                ctx.stroke();
-            } else {
-                // ペアが揃っているカードの描画
-                ctx.fillRect(card.width * x + card.widthS * x, card.height * y + card.heightS * y, card.width, card.height);
+
+                // デバッグのための描画
+                if (debug) {
+                    ctx.font = '24px serif';
+                    ctx.fillText(cards.number[y * card.numX + x], card.width * (x + 0.2) + card.widthS * x, card.height * (y + 0.2) + card.heightS * y);
+                    ctx.font = '48px serif';
+                }
             }
+
             i++;
         }
     }
@@ -289,7 +482,13 @@ const drawScore = () => {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
 
-    ctx.fillText('CLEAR', game.width / 2, card.height * 0, game.width);
+    let msgMode = '';
+
+    if (game.mode === 0) msgMode = 'Numeral';
+    else msgMode = 'Black-and-White';
+    if (option.slide) msgMode += '+Slide';
+
+    ctx.fillText(`${msgMode} CLEAR`, game.width / 2, card.height * 0, game.width);
     ctx.fillText(`時間：${Math.floor(result.timer / 6000)}分${(result.timer % 6000 / 100)}秒`, game.width / 2, card.height * 1.5, game.width);
     ctx.fillText(`回数：${result.count}回`, game.width / 2, card.height * 2.5, game.width);
     ctx.fillText(`ミス：${result.miss}回`, game.width / 2, card.height * 3.5, game.width);
@@ -349,6 +548,20 @@ const getColorBW = num => {
         return '#C8C8C8';
     case 9:
         return '#E1E1E1';
+    }
+}
+
+/* スライドの方向の取得 */
+const getSlideDirection = () => {
+    switch(slide.tempDirection) {
+    case 0:
+        return '←';
+    case 1:
+        return '↓';
+    case 2:
+        return '→';
+    case 3:
+        return '↑';
     }
 }
 
@@ -531,4 +744,7 @@ document.onkeydown = function(e) {
 }
 
 /* タイマー */
-setInterval(concentration, 10);
+setInterval(() => {
+    if (!game.isRunning) return;
+    result.timer++;
+}, 10);
