@@ -79,26 +79,30 @@
 						</div>
 
 						<div id="updates" class="tab-pane">
-							<h2 class="text-center">更新履歴</h2>
-							<table class="table mb-3">
-								<tr><th scope="col">日付</th><th scope="col">更新内容</th></tr>
-								<tr><td>2018-06-09</td><td>ページデザインをBootstrap 4に変更</td></tr>
-								<tr><td>2018-04-29</td><td>不具合修正<br />クリア画面でクリアタイムが増える問題</td></tr>
-								<tr><td rowspan="2">2018-04-28</td><td>不具合修正<br />ミス回数のカウント漏れ</td></tr>
-								<tr><td>白黒モード実装</td></tr>
-								<tr><td rowspan="2">2018-03-28</td><td>不具合修正<br />同じカードを選択できた問題</td></tr>
-								<tr><td>使用方法の追記</td></tr>
-								<tr><td>2018-03-27</td><td>ページ作成</td></tr>
-							</table>
+							<div class="mb-5">
+								<h2 class="text-center">更新履歴</h2>
+								<table class="table mb-3">
+									<tr><th scope="col">日付</th><th scope="col">更新内容</th></tr>
+									<tr><td>2018-06-09</td><td>ページデザインをBootstrap 4に変更</td></tr>
+									<tr><td>2018-04-29</td><td>不具合修正<br />クリア画面でクリアタイムが増える問題</td></tr>
+									<tr><td rowspan="2">2018-04-28</td><td>不具合修正<br />ミス回数のカウント漏れ</td></tr>
+									<tr><td>白黒モード実装</td></tr>
+									<tr><td rowspan="2">2018-03-28</td><td>不具合修正<br />同じカードを選択できた問題</td></tr>
+									<tr><td>使用方法の追記</td></tr>
+									<tr><td>2018-03-27</td><td>ページ作成</td></tr>
+								</table>
+							</div>
 						</div>
 
-						<div id="share">
+						<div id="share" class="mb-3">
 							<a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="神経衰弱PCW">Tweet</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
+
+		<div id="linktominigames" class="container py-3"></div>
 
 		<footer id="common-footer"></footer>
 
@@ -111,8 +115,15 @@
 
 		<!-- JavaScriptの適用 -->
 		<script type="text/javascript" src="../../../js/script.js"></script>
-		<script type="text/javascript" src="../../../js/cardgame.js"></script>
+		<script type="text/javascript" src="../cardgame.js"></script>
 		<script type="text/javascript" src="concentration.js"></script>
+
+		<!-- JavaScript 関数の即時実行 -->
+		<script>
+			(() => {
+				updateLinkToMiniGames();
+			})();
+		</script>
 
 		<!-- Twitter共有 -->
 		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

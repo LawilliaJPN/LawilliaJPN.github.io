@@ -32,61 +32,11 @@
         </section>
 
         <section id="minigames" class="py-5">
-            <h3 class="mb-3 text-center">Mini Games</h3>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-3">
-			<p class="m-1">神経衰弱</p>
-                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/minigame/concentration/">
-                            Concentration
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-3">
-			<p class="m-1">モンテカルロ</p>
-                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/minigame/montecarlo/">
-                            Monte Carlo
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <div id="linktominigames" class="container"></div>
         </section>
 
         <section id="tools" class="py-5">
-            <h3 class="mb-3 text-center">Tools</h3>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-3">
-			<p class="m-1">電卓</p>
-                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/calculator/">
-                            Calculator
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-3">
-			<p class="m-1">和音再生</p>
-                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/chord/">
-                            Chord
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-3">
-			<p class="m-1">カウンタ</p>
-                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/counter/">
-                            Counter
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-3">
-			<p class="m-1">ストップウォッチ</p>
-                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/stopwatch/">
-                            Stopwatch
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-3">
-			<p class="m-1">単語テスト</p>
-                        <a class="btn btn-light btn-outline-primary btn-block" href="https://lawilliajpn.github.io/contents/tool/vocabulary/">
-                            Vocabulary Test
-                        </a>
-                    </div>
-                </div>
-            </div>
+                <div id="linktotools" class="container"></div>
         </section>
 
         <footer id="common-footer"></footer>
@@ -98,7 +48,15 @@
         <!-- Bootstrap JSの適用 -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
-	<!-- JavaScriptの適用 -->
-	<script src="./js/script.js"></script>
+        <!-- JavaScriptの適用 -->
+        <script src="./js/script.js"></script>
+
+        <!-- JavaScript 関数の即時実行 -->
+        <script>
+            (() => {
+                updateLinkToMiniGames();
+                updateLinkToTools();
+            })();
+        </script>
     </body>
 </html>
