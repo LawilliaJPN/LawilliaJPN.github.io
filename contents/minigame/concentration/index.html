@@ -51,6 +51,9 @@
 						<li class="nav-item">
 							<a class="nav-link" href="#updates" data-toggle="tab">更新履歴</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#option" data-toggle="tab">設定</a>
+						</li>
 					</ul>
 
 					<div class="tab-content">
@@ -83,14 +86,27 @@
 								<h2 class="text-center">更新履歴</h2>
 								<table class="table mb-3">
 									<tr><th scope="col">日付</th><th scope="col">更新内容</th></tr>
+									<tr><td>2018-06-26</td><td>キー操作 実装</td></tr>
 									<tr><td>2018-06-09</td><td>ページデザインをBootstrap 4に変更</td></tr>
-									<tr><td>2018-04-29</td><td>不具合修正<br />クリア画面でクリアタイムが増える問題</td></tr>
-									<tr><td rowspan="2">2018-04-28</td><td>不具合修正<br />ミス回数のカウント漏れ</td></tr>
+									<tr><td>2018-04-29</td><td>不具合修正<ul><li>クリア画面でクリアタイムが増える問題</li></ul></td></tr>
+									<tr><td rowspan="2">2018-04-28</td><td>不具合修正<ul><li>ミス回数のカウント漏れ</li></ul></td></tr>
 									<tr><td>白黒モード実装</td></tr>
-									<tr><td rowspan="2">2018-03-28</td><td>不具合修正<br />同じカードを選択できた問題</td></tr>
+									<tr><td rowspan="2">2018-03-28</td><td>不具合修正<ul><li>同じカードを選択できた問題</li></ul></td></tr>
 									<tr><td>使用方法の追記</td></tr>
 									<tr><td>2018-03-27</td><td>ページ作成</td></tr>
 								</table>
+							</div>
+						</div>
+
+						<div id="option" class="tab-pane">
+							<h2 class="text-center">設定</h2>
+							<div class="row">
+								<p class="col-6 text-center">キー操作</p>
+								<div class="col-6">
+									<button id="btnOptionKey" class="btn btn-light btn-outline-info btn-block" onclick="btnOptionKey();">
+										オフ
+									</button>
+								</div>
 							</div>
 						</div>
 

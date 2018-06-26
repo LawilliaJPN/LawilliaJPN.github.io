@@ -20,6 +20,11 @@ const game = {
     pair:0
 };
 
+/* 設定 */
+const option = {
+    keyControl: false
+};
+
 /* スコア関連 */
 const result = {
     timer:0,
@@ -57,15 +62,46 @@ const cards = {
 };
 
 /*
- * 基本処理
+ * ボタン
  */
-/* ボタン */
+
+/* モード切替 */
 const btnStart = mode => {
     game.mode = mode;
     toggleButtonDisplay();
     start();
 }
 
+const btnOptionKey = () => {
+    const optionKey = document.getElementById('btnOptionKey');
+
+    switch(option.keyControl) {
+    case true:
+        optionKey.classList.remove('bg-info');
+        optionKey.classList.remove('text-light');
+        optionKey.classList.add('btn-light');
+        optionKey.classList.add('btn-outline-info');
+
+        optionKey.innerHTML = 'オフ';
+        option.keyControl = false;
+        break;
+    case false:
+        optionKey.classList.add('bg-info');
+        optionKey.classList.add('text-light');
+        optionKey.classList.remove('btn-light');
+        optionKey.classList.remove('btn-outline-info');
+
+        optionKey.innerHTML = 'オン';
+        option.keyControl = true;
+        break;
+    }
+
+    draw();
+}
+
+/*
+ * 基本処理
+ */
 const concentration = () => {
     if (!game.isRunning) return;
     result.timer++;
@@ -97,54 +133,48 @@ const clear = () => {
     draw();
 }
 
-const select = e => {
-    const rect = e.target.getBoundingClientRect();
-    const eventX = (e.clientX - Math.floor(rect.left)) % (card.width + card.widthS);
-    const eventY = (e.clientY - Math.floor(rect.top)) % (card.height + card.heightS);
-    const x = Math.floor((e.clientX - Math.floor(rect.left)) / (card.width + card.widthS));
-    const y = Math.floor((e.clientY - Math.floor(rect.top)) / (card.height + card.heightS));
-    const num = card.numX * y + x;
+const select = num => {
+    // 既にそろっているカードは選べない
+    if (cards.isPaired[num] === true) return;
 
-    if ((eventX <= card.width) && (eventY <= card.height) && (cards.isPaired[num] === false)) {
-        if (cards.selected[0] !== -1) {
-            if (cards.selected[0] === num) return;
+    if (cards.selected[0] !== -1) {
+        if (cards.selected[0] === num) return;
+        
+        cards.selected[1] = num;
+        draw();
+
+        game.isRunning = true;
+        result.count++;
+
+        if (cards.number[cards.selected[0]] === cards.number[cards.selected[1]]) {
+            cards.isPaired[cards.selected[0]] = true;
+            cards.isPaired[cards.selected[1]] = true;
             
-            cards.selected[1] = num;
-            draw();
-
-            game.isRunning = true;
-            result.count++;
-
-            if (cards.number[cards.selected[0]] === cards.number[cards.selected[1]]) {
-                cards.isPaired[cards.selected[0]] = true;
-                cards.isPaired[cards.selected[1]] = true;
-                
-                game.pair--;
-                if (game.pair === 0) clear();
-            } else {
-                if (cards.isKnownNow) {
-                    console.log('miss');
-                    result.miss++;
-                } else if (cards.isKnownCard[cards.selected[1]]) {
-                    console.log('miss');
-                    result.miss++;
-                }
-            }
-
-            cards.isKnownNumber[cards.number[cards.selected[1]]] = true;
-            cards.isKnownCard[cards.selected[1]] = true;
-            cards.selected[0] = cards.selected[1] = -1;
+            game.pair--;
+            if (game.pair === 0) clear();
         } else {
-            cards.selected[0] = num;
-            draw();
-
-            cards.isKnownCard[cards.selected[0]] = true;
-            if (cards.isKnownNumber[cards.number[cards.selected[0]]]) {
-                cards.isKnownNow = true;
-            } else {
-                cards.isKnownNumber[cards.number[cards.selected[0]]] = true;
-                cards.isKnownNow = false;
+            if (cards.isKnownNow) {
+                console.log('miss');
+                result.miss++;
+            } else if (cards.isKnownCard[cards.selected[1]]) {
+                console.log('miss');
+                result.miss++;
             }
+        }
+
+        cards.isKnownNumber[cards.number[cards.selected[1]]] = true;
+        cards.isKnownCard[cards.selected[1]] = true;
+        cards.selected[0] = cards.selected[1] = -1;
+    } else {
+        cards.selected[0] = num;
+        draw();
+
+        cards.isKnownCard[cards.selected[0]] = true;
+        if (cards.isKnownNumber[cards.number[cards.selected[0]]]) {
+            cards.isKnownNow = true;
+        } else {
+            cards.isKnownNumber[cards.number[cards.selected[0]]] = true;
+            cards.isKnownNow = false;
         }
     }
 }
@@ -172,7 +202,16 @@ const getCanvas = () => {
 
     /* ゲーム中 入力 */
     canvas.addEventListener('mousedown',function(e){
-        select(e);
+        const rect = e.target.getBoundingClientRect();
+        const eventX = (e.clientX - Math.floor(rect.left)) % (card.width + card.widthS);
+        const eventY = (e.clientY - Math.floor(rect.top)) % (card.height + card.heightS);
+        const x = Math.floor((e.clientX - Math.floor(rect.left)) / (card.width + card.widthS));
+        const y = Math.floor((e.clientY - Math.floor(rect.top)) / (card.height + card.heightS));
+        const num = card.numX * y + x;
+    
+        if ((eventX <= card.width) && (eventY <= card.height)) {
+            select(num);
+        }
     });
 }
 
@@ -206,21 +245,32 @@ const drawGame = () => {
         for (let x = 0; x < card.numX; x++){
             if (!cards.isPaired[i]) {
                 if ((i === cards.selected[0]) || (i === cards.selected[1])) {
+                    // 選択中のカードの描画
+
                     switch (game.mode) {
                     case 0:
+                        // カードの数字を描画
                         ctx.fillText(cards.number[y * card.numX + x], card.width * (x + 0.5) + card.widthS * x, card.height * (y + 0.5) + card.heightS * y, card.width);
                         break;
                     case 1:
+                        // カードの白黒を描画
                         ctx.fillStyle = getColorBW(cards.number[y * card.numX + x]);
                         ctx.fillRect(card.width * x + card.widthS * x, card.height * y + card.heightS * y, card.width, card.height);
                         ctx.fillStyle = 'black';
                         break;
                     }
+                } else if (option.keyControl) {
+                    // キー操作のための描画
+                    ctx.font = '24px serif';
+                    ctx.fillText(getKeyFromCard(y * card.numX + x), card.width * (x + 0.2) + card.widthS * x, card.height * (y + 0.2) + card.heightS * y);
+                    ctx.font = '48px serif';
                 }
                 
+                // カードの外枠の描画
                 ctx.rect(card.width * x + card.widthS * x, card.height * y + card.heightS * y, card.width, card.height);
                 ctx.stroke();
             } else {
+                // ペアが揃っているカードの描画
                 ctx.fillRect(card.width * x + card.widthS * x, card.height * y + card.heightS * y, card.width, card.height);
             }
             i++;
@@ -303,9 +353,164 @@ const getColorBW = num => {
 }
 
 /*
+ * キー操作
+ */
+// キーコードからカードを選ぶ
+const getCardFromKey = e => {
+    switch (e.keyCode) {
+    case 49:
+        // 1
+        select(0);
+        break;
+    case 50:
+        // 2
+        select(1);
+        break;
+    case 51:
+        // 3
+        select(2);
+        break;
+    case 52:
+        // 4
+        select(3);
+        break;
+    case 53:
+        // 5
+        select(4);
+        break;
+    case 81:
+        // Q
+        select(5);
+        break;
+    case 87:
+        // W
+        select(6);
+        break;
+    case 69:
+        // E
+        select(7);
+        break;
+    case 82:
+        // R
+        select(8);
+        break;
+    case 84:
+        // T
+        select(9);
+        break;
+    case 65:
+        // A
+        select(10);
+        break;
+    case 83:
+        // S
+        select(11);
+        break;
+    case 68:
+        // D
+        select(12);
+        break;
+    case 70:
+        // F
+        select(13);
+        break;
+    case 71:
+        // G
+        select(14);
+        break;
+    case 90:
+        // Z
+        select(15);
+        break;
+    case 88:
+        // X
+        select(16);
+        break;
+    case 67:
+        // C
+        select(17);
+        break;
+    case 86:
+        // V
+        select(18);
+        break;
+    case 66:
+        // B
+        select(19);
+        break;
+    }
+}
+
+
+// キーコードからカードを選ぶ
+const getKeyFromCard = num => {
+    switch (num) {
+    case 0:
+        return '1';
+        break;
+    case 1:
+        return '2';
+        break;
+    case 2:
+        return '3';
+        break;
+    case 3:
+        return '4';
+        break;
+    case 4:
+        return '5';
+        break;
+    case 5:
+        return 'Q';
+        break;
+    case 6:
+        return 'W';
+        break;
+    case 7:
+        return 'E';
+        break;
+    case 8:
+        return 'R';
+        break;
+    case 9:
+        return 'T';
+        break;
+    case 10:
+        return 'A';
+        break;
+    case 11:
+        return 'S';
+        break;
+    case 12:
+        return 'D';
+        break;
+    case 13:
+        return 'F';
+        break;
+    case 14:
+        return 'G';
+        break;
+    case 15:
+        return 'Z';
+        break;
+    case 16:
+        return 'X';
+        break;
+    case 17:
+        return 'C';
+        break;
+    case 18:
+        return 'V';
+        break;
+    case 19:
+        return 'B';
+        break;
+    }
+}
+
+/*
  * 入力
  */
-
 /* ページを開いたとき */
 window.onload = function() {
     updateCanvas();
@@ -320,7 +525,10 @@ window.onresize = function() {
 
 /* キーボード */
 document.onkeydown = function(e) {
-    start();
+    if (option.keyControl) {
+        getCardFromKey(e);
+    }
 }
+
 /* タイマー */
 setInterval(concentration, 10);
