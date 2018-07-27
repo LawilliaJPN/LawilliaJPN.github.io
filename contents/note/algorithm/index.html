@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- 文字コード -->
+    <meta charset="utf-8">
+
+    <!-- デバイスに幅を合わせる -->
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Bootstrap 4の適用 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <!-- ページタイトル -->
+    <title>アルゴリズム・ノート</title>
+</head>
+
+<body>
+    <header id="common-header" class="container"></header>
+
+    <section id="top" class="py-5 border-top bg-light">
+        <div class="container">
+            <div class="center-block text-center">
+                <h1>アルゴリズム・ノート</h1>
+            </div>
+        </div>
+    </section>
+
+    <section class="container py-5">
+        <div class="row">
+            <div class="col-lg-8 mb-5">
+                <h2 id="al-name"></h2>
+                <p id="al-output"></p>
+            </div>
+
+
+            <div class="col-lg-4 mb-5">
+                <ul class="nav nav-tabs mb-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#list" data-toggle="tab">一覧</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#howtouse" data-toggle="tab">使用方法</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#updates" data-toggle="tab">更新履歴</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="list" class="tab-pane active">
+                        <h2 class="text-center">アルゴリズム一覧</h2>
+                        <div class="mb-3">
+                            <h4 class="mb-3 text-center">探索</h4>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-12 mb-3">
+                                    <button id="selectImplemented" class="btn btn-light btn-outline-info btn-block" onclick="selectAlgorithm('Implemented');">
+                                        未実装
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="howtouse" class="tab-pane">
+                        <h2 class="text-center">使用方法</h2>
+                    </div>
+
+                    <div id="updates" class="tab-pane">
+                        <h2 class="text-center">更新履歴</h2>
+                        <table class="table mb-3">
+                            <tr><th scope="col">日付</th><th scope="col">更新内容</th></tr>
+                            <tr><td>2018-07-27</td><td>ページ作成</td></tr>
+                        </table>
+                    </div>
+
+                    <div id="share">
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="LawiPCW">Tweet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="common-footer"></footer>
+
+    <!-- jQueryの適用 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.jsの適用 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JSの適用 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <!-- JavaScriptの適用 -->
+    <script type="text/javascript" src="../../../js/script.js"></script>
+    <script type="text/javascript" src="algorithm.js"></script>
+
+    <!-- Twitter共有 -->
+    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+</body>
+</html>
