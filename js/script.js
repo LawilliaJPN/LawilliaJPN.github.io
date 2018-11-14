@@ -14,10 +14,10 @@ $('#common-header').html(`
 	<div id="menu" class="collapse navbar-collapse">
 		<ul class="navbar-nav">
 			<li class="nav-item mr-1">
-				<a class="nav-link" href="https://lawilliajpn.github.io/">TOP</a>
+				<a class="nav-link" href="https://lawilliajpn.github.io/">トップページ</a>
 			</li>
 			<li class="nav-item mr-1">
-				<a class="nav-link" href="https://lawilliajpn.github.io/profile/">PROFILE</a>
+				<a class="nav-link" href="https://lawilliajpn.github.io/profile/">プロフィール</a>
 			</li>
 		</ul>
 	</div>
@@ -37,7 +37,7 @@ $('#common-footer').html(`
 // Mini Games
 const updateLinkToMiniGames = () => {
 	$('#linktominigames').html(`
-		<h3 class="mb-3 text-center">Mini Games</h3>
+		<h3 class="mb-3 text-center">ミニゲーム</h3>
 		<div class="row">
 			<div class="col-lg-4 col-md-6 mb-3">
 				<p class="m-1">神経衰弱</p>
@@ -58,7 +58,7 @@ const updateLinkToMiniGames = () => {
 // Mini Games
 const updateLinkToTools = () => {
 	$('#linktotools').html(`
-		<h3 class="mb-3 text-center">Tools</h3>
+		<h3 class="mb-3 text-center">ツール</h3>
 		<div class="row">
 			<div class="col-lg-4 col-md-6 mb-3">
 	<p class="m-1">電卓</p>
